@@ -1,0 +1,6 @@
+
+website/node_modules
+website/.env
+website/cache
+website/public
+sanity/node_modules
