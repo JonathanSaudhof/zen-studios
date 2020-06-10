@@ -11,7 +11,6 @@ export default {
       title: "Site Title",
       type: "string",
     },
-
     {
       name: "favIcon",
       title: "Fav Icon",

@@ -11,6 +11,7 @@ import post from "./post";
 import page from "./page";
 import author from "./author";
 import siteSetting from "./siteSetting";
+import landingPage from "./LandigPage";
 
 //objects
 
@@ -28,6 +29,7 @@ export default createSchema({
     // in the studio.
     post,
     category,
+    landingPage,
     page,
     author,
 
