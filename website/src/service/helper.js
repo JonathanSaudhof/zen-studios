@@ -1,7 +1,7 @@
 import imageUrlBuilder from "@sanity/image-url"
 
-export const getNodesFromQuery = (dataSet: { edges: object[] }) => {
-  return dataSet.edges.map((element: { node: object }) => {
+export const getNodesFromQuery = ({ edges }) => {
+  return dataSet.edges.map(({ node }) => {
     return element.node
   })
 }

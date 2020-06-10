@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { imageUrlFor } from "../service/helper"
+import { imageUrlFor } from "./helper"
 
 const imageComponent = ({ node }) => {
   let [imageUrl, setImageUrl] = useState(0)
