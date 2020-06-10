@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { Image } from "react-bootstrap"
 
 import { imageUrlFor } from "../service/helper"
 
@@ -8,11 +7,7 @@ const imageComponent = ({ node }) => {
 
   imageUrlFor(node)
     .then(imageBuilder =>
-      imageBuilder
-        .width(1200)
-        .auto("format")
-        .fit("scale")
-        .url()
+      imageBuilder.width(1200).auto("format").fit("scale").url()
     )
     .then(url => setImageUrl(url))
     .catch(err => {
