@@ -5,8 +5,6 @@ import styled from "styled-components"
 import { Container, Row, Col } from "react-bootstrap"
 import { Navigation, NavLink } from "./Navigation"
 
-// TEST COMMENT --------------
-
 const MyHeader = styled.header`
   display: flex;
   justify-content: space-between;
