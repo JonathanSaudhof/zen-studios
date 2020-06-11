@@ -10,8 +10,18 @@ export default {
     },
     {
       name: "content",
-      title: "content",
+      title: "Content",
       type: "blockContent",
+    },
+    {
+      name: "image",
+      title: "Image",
+      type: "image",
+    },
+    {
+      name: "button",
+      title: "Button",
+      type: "url",
     },
   ],
   preview: {
