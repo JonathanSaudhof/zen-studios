@@ -24,6 +24,19 @@ export default {
         isHighlighted: true,
       },
     },
+    {
+      name: "position",
+      type: "string",
+      title: "Position",
+      options: {
+        isHighlighted: true,
+        list: [
+          { title: "Left", value: "left" },
+          { title: "Right", value: "right" },
+          { title: "Center", value: "center" },
+        ],
+      },
+    },
   ],
   preview: {
     select: {
