@@ -1,4 +1,5 @@
 import imageUrlBuilder from "@sanity/image-url"
+require("dotenv").config()
 
 export const getNodesFromQuery = ({ edges }) => {
   return dataSet.edges.map(({ node }) => {
@@ -7,7 +8,7 @@ export const getNodesFromQuery = ({ edges }) => {
 }
 
 const builder = imageUrlBuilder({
-  projectId: "4tgjss9y",
+  projectId: process.env.SANITY_PROJECT_ID,
   dataset: process.env.Production ? "production" : "staging",
 })
 
