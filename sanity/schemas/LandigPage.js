@@ -18,11 +18,11 @@ export default {
       title: "Image",
       type: "image",
     },
-    {
-      name: "button",
-      title: "Button",
-      type: "url",
-    },
+    // {
+    //   name: "button",
+    //   title: "Button",
+    //   type: "url",
+    // },
   ],
   preview: {
     select: {

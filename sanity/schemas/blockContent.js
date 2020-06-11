@@ -36,6 +36,9 @@ export default {
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
+          { title: "Underline", value: "underline" },
+          { title: "Strike-through", value: "strike-through" },
+          { title: "Code", value: "code" },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
@@ -49,6 +52,29 @@ export default {
                 name: "href",
                 type: "url",
               },
+              {
+                title: "Open in new tab",
+                name: "blank",
+                description: "",
+                type: "boolean",
+              },
+            ],
+          },
+          {
+            title: "Button",
+            name: "button",
+            type: "object",
+            fields: [
+              {
+                title: "Link",
+                name: "href",
+                type: "url",
+              },
+              {
+                title: "Button Text",
+                name: "text",
+                type: "string",
+              },
             ],
           },
         ],
@@ -58,7 +84,7 @@ export default {
     // primitive types such as 'string' and 'number' in the same array
     // as a block type.
     {
-      type: "image",
+      type: "inlineImage",
       options: { hotspot: true },
     },
   ],
