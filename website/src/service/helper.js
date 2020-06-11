@@ -1,8 +1,9 @@
 import imageUrlBuilder from "@sanity/image-url"
-require("dotenv").config()
+// require("dotenv").config()
 
-export const getNodesFromQuery = ({ edges }) => {
-  return dataSet.edges.map(({ node }) => {
+export const getNodesFromQuery = dataSet => {
+  // console.log("DataSet:", dataSet)
+  return dataSet.edges.map(element => {
     return element.node
   })
 }

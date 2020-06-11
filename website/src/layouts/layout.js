@@ -20,11 +20,6 @@ const Main = styled.main`
   min-height: 100vh;
 `
 
-const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.lightBrown};
-  padding-top: 60px;
-`
-
 const Footer = styled.footer`
   height: 60px;
   display: flex;
@@ -52,11 +47,9 @@ const Layout = ({ children }) => {
       <>
         <GlobalStyle />
         <Header siteTitle={data.site.siteMetadata.title} />
-        <Wrapper>
-          <Container>
-            <Main>{children}</Main>
-          </Container>
-        </Wrapper>
+
+        <Main>{children}</Main>
+
         <Footer>
           <Container>
             <p>Copyright © mein-hunde-ratgeber.de</p>
