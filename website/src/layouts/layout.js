@@ -21,6 +21,9 @@ const Main = styled.main`
   background-image: url("${props => props.backgroundImage}");
   background-size:30px;
   background-color: ${props => props.theme.background};
+  padding-top: 60px;
+  padding-left: 20px;
+  color: white;
 `
 
 const Footer = styled.footer`

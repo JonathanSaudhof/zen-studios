@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import { imageUrlFor } from "./helper"
 
-const imageComponent = ({ node }) => {
+const ImageComponent = ({ node }) => {
   let [imageUrl, setImageUrl] = useState(0)
 
   imageUrlFor(node)
@@ -23,7 +23,7 @@ const imageComponent = ({ node }) => {
 }
 const blockSerializer = {
   types: {
-    image: imageComponent,
+    inlineImage: ImageComponent,
   },
 }
 
