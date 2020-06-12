@@ -1,4 +1,5 @@
 import React from "react"
+import Img from "gatsby-image"
 
 import Layout from "../layouts/layout"
 import SEO from "../components/seo"
@@ -32,7 +33,6 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <FullPageContainer inputColor="#1E442F">Test</FullPageContainer>
     </Layout>
   )
 }

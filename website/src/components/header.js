@@ -8,14 +8,15 @@ import { Navigation, NavLink } from "./Navigation"
 const MyHeader = styled.header`
   display: flex;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: ${props =>
+    props.theme.headerColor ? props.theme.headerColor : "#fff"};
   height: 40px;
   width: 100%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: fixed;
 `
 const BrandLogo = styled.h1`
-  background-image: url("images/logo-mhr.png");
+  background-image: url("${props => props.url}");
   background-position-x: 0px;
   background-position-y: center;
   text-indent: -9999px;
@@ -27,14 +28,15 @@ const BrandLogo = styled.h1`
   margin: 0px;
 `
 
-const Header = ({ siteTitle }) => {
+const Header = ({ siteTitle, showLogo, logoUrl }) => {
   // TODO: make it dynamic!
+
   return (
     <MyHeader>
       <Container>
         <Row className="justify-content-between">
           <Col xs={8} md={5}>
-            <BrandLogo />
+            {showLogo ? <BrandLogo url={logoUrl}>{siteTitle}</BrandLogo> : ""}
           </Col>
           <Col xs={4} md={7}>
             <Navigation>

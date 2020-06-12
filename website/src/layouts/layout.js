@@ -18,6 +18,9 @@ import { GlobalStyle } from "./globalstyle"
 
 const Main = styled.main`
   min-height: 100vh;
+  background-image: url("${props => props.backgroundImage}");
+  background-size:30px;
+  background-color: ${props => props.theme.background};
 `
 
 const Footer = styled.footer`
@@ -39,16 +42,26 @@ const Layout = ({ children }) => {
           title
         }
       }
+
+      backgroundImage: file(relativePath: { eq: "structure.png" }) {
+        id
+        publicURL
+      }
+
+      brandLogo: file(relativePath: { eq: "logo.svg" }) {
+        id
+        publicURL
+      }
     }
   `)
-
+  console.log(data.brandLogo)
   return (
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={data.site.siteMetadata.title} showLogo />
 
-        <Main>{children}</Main>
+        <Main backgroundImage={data.backgroundImage.publicURL}>{children}</Main>
 
         <Footer>
           <Container>

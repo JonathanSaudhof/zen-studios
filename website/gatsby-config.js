@@ -11,6 +11,8 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `react-bootstrap`,
     `react-icons`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-styled-components`,
       options: {
