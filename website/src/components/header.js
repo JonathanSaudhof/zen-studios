@@ -10,7 +10,7 @@ const MyHeader = styled.header`
   justify-content: space-between;
   background-color: ${props =>
     props.theme.headerColor ? props.theme.headerColor : "#fff"};
-  height: 40px;
+  height: ${props => props.theme.headerHeight};
   width: 100%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: fixed;
@@ -30,13 +30,13 @@ const BrandLogo = styled.h1`
 
 const Header = ({ siteTitle, showLogo, logoUrl }) => {
   // TODO: make it dynamic!
-
+  console.log(showLogo)
   return (
     <MyHeader>
       <Container>
         <Row className="justify-content-between">
           <Col xs={8} md={5}>
-            {showLogo ? <BrandLogo url={logoUrl}>{siteTitle}</BrandLogo> : ""}
+            {showLogo}
           </Col>
           <Col xs={4} md={7}>
             <Navigation>

@@ -21,6 +21,7 @@ const Main = styled.main`
   background-image: url("${props => props.backgroundImage}");
   background-size:30px;
   background-color: ${props => props.theme.background};
+  padding-top:${props => props.theme.headerHeight};
 `
 
 const Footer = styled.footer`
@@ -42,13 +43,7 @@ const Layout = ({ children }) => {
           title
         }
       }
-
       backgroundImage: file(relativePath: { eq: "structure.png" }) {
-        id
-        publicURL
-      }
-
-      brandLogo: file(relativePath: { eq: "logo.svg" }) {
         id
         publicURL
       }
@@ -59,10 +54,9 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
-        <Header siteTitle={data.site.siteMetadata.title} showLogo />
+        <Header siteTitle={data.site.siteMetadata.title} />
 
         <Main backgroundImage={data.backgroundImage.publicURL}>{children}</Main>
-
         <Footer>
           <Container>
             <p>Copyright © mein-hunde-ratgeber.de</p>
