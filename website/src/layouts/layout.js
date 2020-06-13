@@ -22,6 +22,8 @@ const Main = styled.main`
   background-size:30px;
   background-color: ${props => props.theme.background};
   padding-top:${props => props.theme.headerHeight};
+  padding-left: 20px;
+  color: white;
 `
 
 const Footer = styled.footer`
