@@ -9,8 +9,8 @@ export const getNodesFromQuery = dataSet => {
 }
 
 const builder = imageUrlBuilder({
-  projectId: process.env.SANITY_PROJECT_ID,
-  dataset: process.env.Production ? "production" : "staging",
+  projectId: "nkdz9z1y",
+  dataset: "production",
 })
 
 export async function imageUrlFor(source) {

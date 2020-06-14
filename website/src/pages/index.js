@@ -60,8 +60,9 @@ export const query = graphql`
 `
 
 const BrandLogo = styled(Logo)`
-  color: white;
-  height: 500px;
+  position: absolute;
+  width: 50%;
+  height: 50%;
 `
 
 const Hero = styled(Jumbotron)`
@@ -73,10 +74,56 @@ const FullPageContainer = ({ children, inputColor }) => {
   return <Hero inputColor={inputColor}>{children}</Hero>
 }
 
-const Canvas = styled.div`
-  svg {
-    position: absolute;
+const Canvas = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: calc(100vh - ${props => props.theme.headerHeight});
+`
+const LandingPageSections = styled.section``
+
+const NoScroll = styled.div`
+  overflow: hidden;
+`
+
+const LeftPalms = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  path {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
   }
+`
+
+const RightPalms = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+`
+const Palms = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+ 
+  svg {
+    height: 100%;
+    width: auto;
+    position: absolute;
+    
+    :first-child {
+      fill: ${props => props.theme.primaryLight};
+      top: 10px;
+      height: 95%;
+    }
+    :nth-child(2) {
+      fill: ${props => props.theme.primaryDark};
+    }
+  }s
 `
 const IndexPage = ({ data }) => {
   console.log(data)
@@ -86,29 +133,36 @@ const IndexPage = ({ data }) => {
 
   useEffect(() => {
     // Update the document title using the browser API
-    gsap.to(".box", { rotation: 27, x: 200, duration: 1 })
   })
   return (
     <Layout>
       <SEO title="Home" />
+
       <Canvas>
-        <Logo height="500" width="500" className="box" />
-        <Palm height="500" width="500" transform="scale(1.5,1.5)" />
-        <Palm
-          height="500"
-          width="500"
-          transform="translate(500, 0) scale(-1.5,1.5)"
-        />
+        <BrandLogo className="box" />
+        <Palm fill="black" />
+        <Palms>
+          <LeftPalms>
+            <Palm transform="scale(1,1)" />
+            <Palm transform="scale(1,1)" />
+          </LeftPalms>
+          <RightPalms>
+            <Palm transform="scale(-1,1)" />
+            <Palm transform="scale(-1,1)" />
+          </RightPalms>
+        </Palms>
       </Canvas>
-      {landingPageSection.map(element => (
-        <>
-          <h1>{element.title}</h1>
-          <BlockContent
-            blocks={element._rawContent}
-            serializers={blockSerializer}
-          />
-        </>
-      ))}
+      {/* <LandingPageSections>
+        {landingPageSection.map(element => (
+          <>
+            <h1>{element.title}</h1>
+            <BlockContent
+              blocks={element._rawContent}
+              serializers={blockSerializer}
+            />
+          </>
+        ))}
+      </LandingPageSections> */}
     </Layout>
   )
 }

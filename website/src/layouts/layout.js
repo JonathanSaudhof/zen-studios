@@ -17,17 +17,15 @@ import { theme } from "./theme"
 import { GlobalStyle } from "./globalstyle"
 
 const Main = styled.main`
-  min-height: 100vh;
+  height: calc(100vh - ${props => props.theme.headerHeight});
   background-image: url("${props => props.backgroundImage}");
   background-size:30px;
   background-color: ${props => props.theme.background};
   padding-top:${props => props.theme.headerHeight};
-  padding-left: 20px;
-  color: white;
 `
 
 const Footer = styled.footer`
-  height: 60px;
+  height: 40px;
   display: flex;
   justify-content: space-around;
   align-items: center;

@@ -20,7 +20,7 @@ const BrandLogo = styled.h1`
   background-position-x: 0px;
   background-position-y: center;
   text-indent: -9999px;
-  height: 40px;
+  height: ${props => props.theme.headerHeight};
   width: 100%;
   background-repeat: no-repeat;
   background-size: contain;
