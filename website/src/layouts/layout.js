@@ -17,7 +17,7 @@ import { theme } from "./theme"
 import { GlobalStyle } from "./globalstyle"
 
 const Main = styled.main`
-  height: calc(100vh - ${props => props.theme.headerHeight});
+  min-height: calc(100vh - ${props => props.theme.headerHeight});
   background-image: url("${props => props.backgroundImage}");
   background-size:30px;
   background-color: ${props => props.theme.background};
@@ -57,12 +57,14 @@ const Layout = ({ children }) => {
         <GlobalStyle />
         <Header siteTitle={data.site.siteMetadata.title} />
 
-        <Main backgroundImage={data.backgroundImage.publicURL}>{children}</Main>
-        <Footer>
-          <Container>
-            <p>Copyright © mein-hunde-ratgeber.de</p>
-          </Container>
-        </Footer>
+        <Main backgroundImage={data.backgroundImage.publicURL}>
+          {children}
+          <Footer>
+            <Container>
+              <p>Copyright © mein-hunde-ratgeber.de</p>
+            </Container>
+          </Footer>
+        </Main>
       </>
     </ThemeProvider>
   )

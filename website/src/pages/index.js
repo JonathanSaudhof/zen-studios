@@ -131,6 +131,10 @@ const Palms = styled.div`
     }
   }s
 `
+const ContentWrapper = styled.div`
+  width: 100%;
+  background-image: url('${props => props.imageUrl}');
+`
 
 const IndexPage = ({ data }) => {
   console.log(data)
@@ -165,19 +169,21 @@ const IndexPage = ({ data }) => {
       </Canvas>
       <Content>
         <h1>Scroll-Pos:{scrollPos}</h1>
-        <Container>
-          <LandingPageSections>
-            {landingPageSection.map(element => (
-              <>
-                <h1>{element.title}</h1>
-                <BlockContent
-                  blocks={element._rawContent}
-                  serializers={blockSerializer}
-                />
-              </>
-            ))}
-          </LandingPageSections>
-        </Container>
+        <LandingPageSections>
+          {landingPageSection.map(element => (
+            <>
+              <ContentWrapper imageUrl={element.image}>
+                <Container>
+                  <h1>{element.title}</h1>
+                  <BlockContent
+                    blocks={element._rawContent}
+                    serializers={blockSerializer}
+                  />
+                </Container>
+              </ContentWrapper>
+            </>
+          ))}
+        </LandingPageSections>
       </Content>
     </Layout>
   )
