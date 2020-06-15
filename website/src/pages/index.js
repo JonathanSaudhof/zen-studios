@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import gsap from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
 
@@ -77,6 +77,7 @@ const FullPageContainer = ({ children, inputColor }) => {
 const Canvas = styled.section`
   display: flex;
   justify-content: center;
+  overflow: hidden;
   align-items: center;
   position: relative;
   height: calc(100vh - ${props => props.theme.headerHeight});
@@ -88,25 +89,31 @@ const NoScroll = styled.div`
 `
 
 const LeftPalms = styled.div`
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 50%;
   height: 100%;
-  path {
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+  svg {
+    top: 0;
+    right: 0;
   }
 `
 
 const RightPalms = styled.div`
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
   width: 50%;
   height: 100%;
+  svg {
+    top: 0;
+    left: 0;
+  }
 `
 const Palms = styled.div`
-  position: absolute;
+  position: relative;
+  display: flex;
   width: 100%;
   height: 100%;
  
@@ -127,12 +134,15 @@ const Palms = styled.div`
 `
 const IndexPage = ({ data }) => {
   console.log(data)
-
+  const [scrollPos, setScrollPos] = useState(0)
   const landingPageSection = getNodesFromQuery(data.landingPageSection)
   // console.log(getNodesFromQuery(data?.localImage))
 
   useEffect(() => {
     // Update the document title using the browser API
+    window.addEventListener("scroll", function (e) {
+      setScrollPos(window.scrollY)
+    })
   })
   return (
     <Layout>
@@ -152,6 +162,7 @@ const IndexPage = ({ data }) => {
           </RightPalms>
         </Palms>
       </Canvas>
+      <h1>Scroll-Pos:{scrollPos}</h1>
       {/* <LandingPageSections>
         {landingPageSection.map(element => (
           <>
