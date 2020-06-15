@@ -6,7 +6,7 @@ import Layout from "../layouts/layout"
 import SEO from "../components/seo"
 
 import styled from "styled-components"
-import { Jumbotron } from "react-bootstrap"
+import { Container, Jumbotron } from "react-bootstrap"
 
 import { getNodesFromQuery } from "../service/helper"
 import Logo from "../assets/logo.svg"
@@ -69,10 +69,9 @@ const Hero = styled(Jumbotron)`
   background-color: ${props => props.inputColor || "palevioletred"};
   min-height: 100vh;
 `
-
-const FullPageContainer = ({ children, inputColor }) => {
-  return <Hero inputColor={inputColor}>{children}</Hero>
-}
+const Content = styled.section`
+  background-color: red;
+`
 
 const Canvas = styled.section`
   display: flex;
@@ -132,6 +131,7 @@ const Palms = styled.div`
     }
   }s
 `
+
 const IndexPage = ({ data }) => {
   console.log(data)
   const [scrollPos, setScrollPos] = useState(0)
@@ -144,6 +144,7 @@ const IndexPage = ({ data }) => {
       setScrollPos(window.scrollY)
     })
   })
+
   return (
     <Layout>
       <SEO title="Home" />
@@ -162,18 +163,22 @@ const IndexPage = ({ data }) => {
           </RightPalms>
         </Palms>
       </Canvas>
-      <h1>Scroll-Pos:{scrollPos}</h1>
-      {/* <LandingPageSections>
-        {landingPageSection.map(element => (
-          <>
-            <h1>{element.title}</h1>
-            <BlockContent
-              blocks={element._rawContent}
-              serializers={blockSerializer}
-            />
-          </>
-        ))}
-      </LandingPageSections> */}
+      <Content>
+        <h1>Scroll-Pos:{scrollPos}</h1>
+        <Container>
+          <LandingPageSections>
+            {landingPageSection.map(element => (
+              <>
+                <h1>{element.title}</h1>
+                <BlockContent
+                  blocks={element._rawContent}
+                  serializers={blockSerializer}
+                />
+              </>
+            ))}
+          </LandingPageSections>
+        </Container>
+      </Content>
     </Layout>
   )
 }
