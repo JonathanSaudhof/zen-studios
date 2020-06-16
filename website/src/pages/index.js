@@ -138,6 +138,7 @@ const Palms = styled.div`
 const ContentWrapper = styled.div`
   width: 100%;
   background-image: url('${props => props.imageUrl}');
+  background-size:cover;
 `
 
 const MyContainer = styled(Container)`
@@ -165,33 +166,27 @@ const ArticleBlock = props => {
 }
 
 const IndexPage = ({ data }) => {
-  console.log(data)
-  const [scrollPos, setScrollPos] = useState(0)
   const landingPageSection = getNodesFromQuery(data.landingPageSection)
   // console.log(getNodesFromQuery(data?.localImage))
 
   useEffect(() => {
     // Update the document title using the browser API
-    window.addEventListener("scroll", function (e) {
-      setScrollPos(window.scrollY)
+    gsap.registerPlugin(ScrollTrigger)
+    const tl = gsap.timeline({
+      ScrollTrigger: { trigger: ".palms", scrub: true, markers: true },
     })
-    // gsap.from(".left-palms", {
-    //   opacity: 0,
-    //   x: -100,
-    //   duration: 2,
-    //   ease: "elastic",
-    // })
-    // gsap.from(".right-palms", {
-    //   opacity: 0,
-    //   x: +100,
-    //   duration: 2,
-    //   ease: "elastic",
-    // })
+    tl.from(".palms", {
+      opacity: 0,
+      x: -100,
+      duration: 2,
+      ease: "none",
+    }).from(".right-palms", {
+      opacity: 1,
+      x: +100,
+      duration: 2,
+      ease: "elastic",
+    })
   })
-  useEffect(() => {
-    // Update the document title using the browser API
-    // gsap.from(".left-palms", { opacity: 0, duration: 1 })
-  }, [scrollPos])
 
   return (
     <Layout>
@@ -199,11 +194,11 @@ const IndexPage = ({ data }) => {
       <Canvas>
         <BrandLogo className="box" />
         <Palms>
-          <LeftPalms className="left-palms" rotation={scrollPos}>
+          <LeftPalms className="palms left-palms" rotation={scrollPos}>
             <Palm transform="scale(1,1)" />
             <Palm transform="scale(1,1)" />
           </LeftPalms>
-          <RightPalms className="right-palms" rotation={scrollPos}>
+          <RightPalms className="palms right-palms" rotation={scrollPos}>
             <Palm transform="scale(-1,1)" />
             <Palm transform="scale(-1,1)" />
           </RightPalms>
@@ -213,7 +208,35 @@ const IndexPage = ({ data }) => {
         <h1>Scroll-Pos:{scrollPos}</h1>
         <LandingPageSections>
           {landingPageSection.map(element => {
+<<<<<<< HEAD
+            // let [imageUrl, setImageUrl] = useState(0)
+
+            // imageUrlFor(element.image)
+            //   .then(imageBuilder =>
+            //     imageBuilder.width(200).auto("format").fit("scale").url()
+            //   )
+            //   .then(url => setImageUrl(url))
+            //   .catch(err => {
+            //     if (err) throw err
+            //   })
+            return (
+              <>
+                <ContentWrapper
+                  imageUrl={imageUrlFor(element.image).width(960).url()}
+                >
+                  <Container>
+                    <h1>{element.title}</h1>
+                    <BlockContent
+                      blocks={element._rawContent}
+                      serializers={blockSerializer}
+                    />
+                  </Container>
+                </ContentWrapper>
+              </>
+            )
+=======
             return <ArticleBlock {...element} />
+>>>>>>> 0b178b45cc42adc9b197cc4f2c123cae75054f82
           })}
           ‚
         </LandingPageSections>
