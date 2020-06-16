@@ -61,8 +61,8 @@ export const query = graphql`
 
 const BrandLogo = styled(Logo)`
   position: absolute;
-  width: 50%;
-  height: 50%;
+  width: 25%;
+  height: 25%;
 `
 
 const Hero = styled(Jumbotron)`
@@ -76,15 +76,21 @@ const Content = styled.section`
 const Canvas = styled.section`
   display: flex;
   justify-content: center;
-  overflow: hidden;
+  overflow-x: hidden;
   align-items: center;
   position: relative;
-  height: calc(100vh - ${props => props.theme.headerHeight});
+  height: 100vh;
 `
-const LandingPageSections = styled.section``
+const LandingPageSections = styled.section`
+  position: relative;
+  height: 100%;
+`
 
-const NoScroll = styled.div`
-  overflow: hidden;
+const ScrollWrapper = styled.div`
+  position: relative;
+  overflow-y: scroll;
+  width: 100%;
+  height: auto;
 `
 
 const LeftPalms = styled.div`
@@ -172,47 +178,56 @@ const IndexPage = ({ data }) => {
   useEffect(() => {
     // Update the document title using the browser API
     gsap.registerPlugin(ScrollTrigger)
-    const tl = gsap.timeline({
-      ScrollTrigger: { trigger: ".palms", scrub: true, markers: true },
-    })
-    tl.from(".palms", {
-      opacity: 0,
-      x: -100,
-      duration: 2,
-      ease: "none",
-    }).from(".right-palms", {
-      opacity: 1,
-      x: +100,
-      duration: 2,
-      ease: "elastic",
-    })
+    const tl1 = gsap.timeline()
+    tl1
+      .to(".palms", {
+        opacity: 1,
+        scale: 1.5,
+        duration: 1,
+        ease: "none",
+      })
+      .to(".box", { scale: 2, duration: 1 }, "-=1")
+      .to(".left-palms", {
+        duration: 4,
+        x: () => -(window.innerWidth / 2),
+        rotation: 45,
+      })
+      .to(
+        ".right-palms",
+        {
+          duration: 4,
+          x: () => window.innerWidth / 2,
+          rotation: -45,
+        },
+        "-=4"
+      )
   })
 
   return (
     <Layout>
       <SEO title="Home" />
-      <Canvas>
-        <BrandLogo className="box" />
-        <Palms>
-          <LeftPalms className="palms left-palms" rotation={scrollPos}>
-            <Palm transform="scale(1,1)" />
-            <Palm transform="scale(1,1)" />
-          </LeftPalms>
-          <RightPalms className="palms right-palms" rotation={scrollPos}>
-            <Palm transform="scale(-1,1)" />
-            <Palm transform="scale(-1,1)" />
-          </RightPalms>
-        </Palms>
-      </Canvas>
-      <Content>
-        <h1>Scroll-Pos:{scrollPos}</h1>
+      <ScrollWrapper>
+        <Canvas>
+          <BrandLogo className="box" />
+          <Palms>
+            <LeftPalms className="palms left-palms">
+              <Palm transform="scale(1,1)" />
+              <Palm transform="scale(1,1)" />
+            </LeftPalms>
+            <RightPalms className="palms right-palms">
+              <Palm transform="scale(-1,1)" />
+              <Palm transform="scale(-1,1)" />
+            </RightPalms>
+          </Palms>
+        </Canvas>
+
         <LandingPageSections>
           {landingPageSection.map(element => {
             return <ArticleBlock {...element} />
           })}
           ‚
         </LandingPageSections>
-      </Content>
+      </ScrollWrapper>
     </Layout>
   )
 }
