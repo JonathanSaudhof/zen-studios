@@ -75,11 +75,13 @@ const Content = styled.section`
 
 const Canvas = styled.section`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   overflow-x: hidden;
   align-items: center;
   position: relative;
   height: 100vh;
+  width: 100%;
 `
 const LandingPageSections = styled.section`
   position: relative;
@@ -186,6 +188,7 @@ const IndexPage = ({ data }) => {
         duration: 1,
         ease: "none",
       })
+      .to("header", { opacity: 1, duration: 1 }, "-=1")
       .to(".box", { scale: 2, duration: 1 }, "-=1")
       .to(".left-palms", {
         duration: 4,
@@ -201,33 +204,32 @@ const IndexPage = ({ data }) => {
         },
         "-=4"
       )
+      .to("box", { duration: 1, attr: { width: 50, top: 0, left: "50%" } })
   })
 
   return (
     <Layout>
       <SEO title="Home" />
-      <ScrollWrapper>
-        <Canvas>
-          <BrandLogo className="box" />
-          <Palms>
-            <LeftPalms className="palms left-palms">
-              <Palm transform="scale(1,1)" />
-              <Palm transform="scale(1,1)" />
-            </LeftPalms>
-            <RightPalms className="palms right-palms">
-              <Palm transform="scale(-1,1)" />
-              <Palm transform="scale(-1,1)" />
-            </RightPalms>
-          </Palms>
-        </Canvas>
 
-        <LandingPageSections>
-          {landingPageSection.map(element => {
-            return <ArticleBlock {...element} />
-          })}
-          ‚
-        </LandingPageSections>
-      </ScrollWrapper>
+      <Canvas>
+        <BrandLogo className="box" />
+        <Palms>
+          <LeftPalms className="palms left-palms">
+            <Palm transform="scale(1,1)" />
+            <Palm transform="scale(1,1)" />
+          </LeftPalms>
+          <RightPalms className="palms right-palms">
+            <Palm transform="scale(-1,1)" />
+            <Palm transform="scale(-1,1)" />
+          </RightPalms>
+        </Palms>
+      </Canvas>
+      <LandingPageSections>
+        {landingPageSection.map(element => {
+          return <ArticleBlock {...element} />
+        })}
+        ‚
+      </LandingPageSections>
     </Layout>
   )
 }
