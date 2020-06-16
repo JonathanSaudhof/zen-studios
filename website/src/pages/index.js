@@ -141,6 +141,29 @@ const ContentWrapper = styled.div`
   background-size:cover;
 `
 
+const MyContainer = styled(Container)`
+  background-color: white;
+  img {
+    width: 100%;
+  }
+`
+
+const ArticleBlock = props => {
+  return (
+    <>
+      <ContentWrapper imageUrl={imageUrlFor(props.image).width(960).url()}>
+        <MyContainer>
+          <h1>{props.title}</h1>
+          <BlockContent
+            blocks={props._rawContent}
+            serializers={blockSerializer}
+          />
+        </MyContainer>
+      </ContentWrapper>
+    </>
+  )
+}
+
 const IndexPage = ({ data }) => {
   const landingPageSection = getNodesFromQuery(data.landingPageSection)
   // console.log(getNodesFromQuery(data?.localImage))
@@ -167,10 +190,8 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-
       <Canvas>
         <BrandLogo className="box" />
-        <Palm fill="black" />
         <Palms>
           <LeftPalms className="palms left-palms" rotation={scrollPos}>
             <Palm transform="scale(1,1)" />
@@ -186,6 +207,7 @@ const IndexPage = ({ data }) => {
         <h1>Scroll-Pos:{scrollPos}</h1>
         <LandingPageSections>
           {landingPageSection.map(element => {
+<<<<<<< HEAD
             // let [imageUrl, setImageUrl] = useState(0)
 
             // imageUrlFor(element.image)
@@ -211,6 +233,9 @@ const IndexPage = ({ data }) => {
                 </ContentWrapper>
               </>
             )
+=======
+            return <ArticleBlock {...element} />
+>>>>>>> 0b178b45cc42adc9b197cc4f2c123cae75054f82
           })}
           ‚
         </LandingPageSections>
