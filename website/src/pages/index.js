@@ -138,36 +138,31 @@ const Palms = styled.div`
 const ContentWrapper = styled.div`
   width: 100%;
   background-image: url('${props => props.imageUrl}');
+  background-size:cover;
 `
 
 const IndexPage = ({ data }) => {
-  console.log(data)
-  const [scrollPos, setScrollPos] = useState(0)
   const landingPageSection = getNodesFromQuery(data.landingPageSection)
   // console.log(getNodesFromQuery(data?.localImage))
 
   useEffect(() => {
     // Update the document title using the browser API
-    window.addEventListener("scroll", function (e) {
-      setScrollPos(window.scrollY)
+    gsap.registerPlugin(ScrollTrigger)
+    const tl = gsap.timeline({
+      ScrollTrigger: { trigger: ".palms", scrub: true, markers: true },
     })
-    // gsap.from(".left-palms", {
-    //   opacity: 0,
-    //   x: -100,
-    //   duration: 2,
-    //   ease: "elastic",
-    // })
-    // gsap.from(".right-palms", {
-    //   opacity: 0,
-    //   x: +100,
-    //   duration: 2,
-    //   ease: "elastic",
-    // })
+    tl.from(".palms", {
+      opacity: 0,
+      x: -100,
+      duration: 2,
+      ease: "none",
+    }).from(".right-palms", {
+      opacity: 1,
+      x: +100,
+      duration: 2,
+      ease: "elastic",
+    })
   })
-  useEffect(() => {
-    // Update the document title using the browser API
-    // gsap.from(".left-palms", { opacity: 0, duration: 1 })
-  }, [scrollPos])
 
   return (
     <Layout>
@@ -177,11 +172,11 @@ const IndexPage = ({ data }) => {
         <BrandLogo className="box" />
         <Palm fill="black" />
         <Palms>
-          <LeftPalms className="left-palms" rotation={scrollPos}>
+          <LeftPalms className="palms left-palms" rotation={scrollPos}>
             <Palm transform="scale(1,1)" />
             <Palm transform="scale(1,1)" />
           </LeftPalms>
-          <RightPalms className="right-palms" rotation={scrollPos}>
+          <RightPalms className="palms right-palms" rotation={scrollPos}>
             <Palm transform="scale(-1,1)" />
             <Palm transform="scale(-1,1)" />
           </RightPalms>
@@ -204,9 +199,8 @@ const IndexPage = ({ data }) => {
             return (
               <>
                 <ContentWrapper
-                // imageUrl={imageUrlFor(element.image).width(200).url()}
+                  imageUrl={imageUrlFor(element.image).width(960).url()}
                 >
-                  <img src={imageUrlFor(element.image).width(200).url()} />
                   <Container>
                     <h1>{element.title}</h1>
                     <BlockContent
