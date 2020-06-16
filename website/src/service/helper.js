@@ -13,6 +13,6 @@ const builder = imageUrlBuilder({
   dataset: "production",
 })
 
-export async function imageUrlFor(source) {
+export function imageUrlFor(source) {
   return builder.image(source)
 }
