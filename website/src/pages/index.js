@@ -141,7 +141,8 @@ const ContentWrapper = styled.div`
 `
 
 const MyContainer = styled(Container)`
-  background-color: white;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
   img {
     width: 100%;
   }

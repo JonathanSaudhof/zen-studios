@@ -1,44 +1,25 @@
 import React, { useState } from "react"
 
 import { imageUrlFor } from "./helper"
+import styled from "styled-components"
+
+const ImageContainer = styled.div`
+  width: 250px;
+  float: inline-end;
+  ${"" /* float: ${props => (props.position === "center" ? "unset" : props.position)}; */}
+`
 
 const ImageComponent = ({ node }) => {
-  // let [imageUrl, setImageUrl] = useState(0)
-
-  // imageUrlFor(node)
-  //   .then(imageBuilder =>
-  //     imageBuilder.width(1200).auto("format").fit("scale").url()
-  //   )
-  //   .then(url => setImageUrl(url))
-  //   .catch(err => {
-  //     if (err) throw err
-  //   })
+  console.log("NODE", node.position)
 
   return (
-    <div className="image-container">
+    <ImageContainer position={node.position}>
       <img
         src={imageUrlFor(node).width(1200).auto("format").fit("scale").url()}
         alt={node.alt}
       />
       {node.caption && <span className="image-caption">{node.caption}</span>}
-    </div>
-  )
-}
-
-function EFG({ abc, def }) {
-  let hdf = 0
-  hdf = abc + def
-  return hdf
-}
-
-const XYZ = props => {
-  const deineMudder = "schlechter Witz"
-
-  return (
-    <>
-      <h1>{deineMudder}</h1>
-      <EFG abc="1" def="2" />
-    </>
+    </ImageContainer>
   )
 }
 
