@@ -93,9 +93,11 @@ const LeftPalms = styled.div`
   left: 0;
   width: 50%;
   height: 100%;
+
   svg {
     top: 0;
     right: 0;
+    transform: ${props => `rotate(${props.rotation})`};
   }
 `
 
@@ -105,7 +107,9 @@ const RightPalms = styled.div`
   right: 0;
   width: 50%;
   height: 100%;
+
   svg {
+    transform: ${props => `rotate(${props.rotation})`};
     top: 0;
     left: 0;
   }
@@ -147,7 +151,23 @@ const IndexPage = ({ data }) => {
     window.addEventListener("scroll", function (e) {
       setScrollPos(window.scrollY)
     })
+    // gsap.from(".left-palms", {
+    //   opacity: 0,
+    //   x: -100,
+    //   duration: 2,
+    //   ease: "elastic",
+    // })
+    // gsap.from(".right-palms", {
+    //   opacity: 0,
+    //   x: +100,
+    //   duration: 2,
+    //   ease: "elastic",
+    // })
   })
+  useEffect(() => {
+    // Update the document title using the browser API
+    // gsap.from(".left-palms", { opacity: 0, duration: 1 })
+  }, [scrollPos])
 
   return (
     <Layout>
@@ -157,11 +177,11 @@ const IndexPage = ({ data }) => {
         <BrandLogo className="box" />
         <Palm fill="black" />
         <Palms>
-          <LeftPalms>
+          <LeftPalms className="left-palms" rotation={scrollPos}>
             <Palm transform="scale(1,1)" />
             <Palm transform="scale(1,1)" />
           </LeftPalms>
-          <RightPalms>
+          <RightPalms className="right-palms" rotation={scrollPos}>
             <Palm transform="scale(-1,1)" />
             <Palm transform="scale(-1,1)" />
           </RightPalms>
