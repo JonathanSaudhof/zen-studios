@@ -208,35 +208,7 @@ const IndexPage = ({ data }) => {
         <h1>Scroll-Pos:{scrollPos}</h1>
         <LandingPageSections>
           {landingPageSection.map(element => {
-<<<<<<< HEAD
-            // let [imageUrl, setImageUrl] = useState(0)
-
-            // imageUrlFor(element.image)
-            //   .then(imageBuilder =>
-            //     imageBuilder.width(200).auto("format").fit("scale").url()
-            //   )
-            //   .then(url => setImageUrl(url))
-            //   .catch(err => {
-            //     if (err) throw err
-            //   })
-            return (
-              <>
-                <ContentWrapper
-                  imageUrl={imageUrlFor(element.image).width(960).url()}
-                >
-                  <Container>
-                    <h1>{element.title}</h1>
-                    <BlockContent
-                      blocks={element._rawContent}
-                      serializers={blockSerializer}
-                    />
-                  </Container>
-                </ContentWrapper>
-              </>
-            )
-=======
             return <ArticleBlock {...element} />
->>>>>>> 0b178b45cc42adc9b197cc4f2c123cae75054f82
           })}
           ‚
         </LandingPageSections>
