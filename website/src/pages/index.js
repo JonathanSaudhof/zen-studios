@@ -140,6 +140,29 @@ const ContentWrapper = styled.div`
   background-image: url('${props => props.imageUrl}');
 `
 
+const MyContainer = styled(Container)`
+  background-color: white;
+  img {
+    width: 100%;
+  }
+`
+
+const ArticleBlock = props => {
+  return (
+    <>
+      <ContentWrapper imageUrl={imageUrlFor(props.image).width(960).url()}>
+        <MyContainer>
+          <h1>{props.title}</h1>
+          <BlockContent
+            blocks={props._rawContent}
+            serializers={blockSerializer}
+          />
+        </MyContainer>
+      </ContentWrapper>
+    </>
+  )
+}
+
 const IndexPage = ({ data }) => {
   console.log(data)
   const [scrollPos, setScrollPos] = useState(0)
@@ -172,10 +195,8 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-
       <Canvas>
         <BrandLogo className="box" />
-        <Palm fill="black" />
         <Palms>
           <LeftPalms className="left-palms" rotation={scrollPos}>
             <Palm transform="scale(1,1)" />
@@ -191,32 +212,7 @@ const IndexPage = ({ data }) => {
         <h1>Scroll-Pos:{scrollPos}</h1>
         <LandingPageSections>
           {landingPageSection.map(element => {
-            // let [imageUrl, setImageUrl] = useState(0)
-
-            // imageUrlFor(element.image)
-            //   .then(imageBuilder =>
-            //     imageBuilder.width(200).auto("format").fit("scale").url()
-            //   )
-            //   .then(url => setImageUrl(url))
-            //   .catch(err => {
-            //     if (err) throw err
-            //   })
-            return (
-              <>
-                <ContentWrapper
-                // imageUrl={imageUrlFor(element.image).width(200).url()}
-                >
-                  <img src={imageUrlFor(element.image).width(200).url()} />
-                  <Container>
-                    <h1>{element.title}</h1>
-                    <BlockContent
-                      blocks={element._rawContent}
-                      serializers={blockSerializer}
-                    />
-                  </Container>
-                </ContentWrapper>
-              </>
-            )
+            return <ArticleBlock {...element} />
           })}
           ‚
         </LandingPageSections>
