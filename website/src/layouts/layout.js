@@ -17,11 +17,20 @@ import { theme } from "./theme"
 import { GlobalStyle } from "./globalstyle"
 
 const Main = styled.main`
-  height: auto;
-  background-image: url("${props => props.backgroundImage}");
+  background-image:  url("${props =>
+    props.backgroundImage}"),radial-gradient(closest-side,rgba(0,0,0,0), rgba(0,0,0,0.5));
   background-size:30px;
   background-color: ${props => props.theme.background};
   padding-top:${props => props.theme.headerHeight};
+  background-attachment:fixed;
+  &::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color:white;
+    background-image: radial-gradient(circle, red, yellow, green);
+  }
+
 `
 
 const Footer = styled.footer`
@@ -49,13 +58,12 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  console.log(data.brandLogo)
+
   return (
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
         <Header siteTitle={data.site.siteMetadata.title} />
-
         <Main backgroundImage={data.backgroundImage.publicURL}>
           {children}
           <Footer>

@@ -60,9 +60,14 @@ export const query = graphql`
 `
 
 const BrandLogo = styled(Logo)`
-  position: absolute;
+  position: fixed;
   width: 25%;
   height: 25%;
+  @media (max-width: ${props => props.theme.mobile}) {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+  }
 `
 
 const Hero = styled(Jumbotron)`
@@ -75,11 +80,13 @@ const Content = styled.section`
 
 const Canvas = styled.section`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  overflow-x: hidden;
+  overflow: hidden;
   align-items: center;
   position: relative;
   height: 100vh;
+  width: 100%;
 `
 const LandingPageSections = styled.section`
   position: relative;
@@ -125,7 +132,9 @@ const Palms = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
- 
+  div {
+    overflow:hidden
+  }
   svg {
     height: 100%;
     width: auto;
@@ -183,15 +192,28 @@ const IndexPage = ({ data }) => {
   useEffect(() => {
     // Update the document title using the browser API
     gsap.registerPlugin(ScrollTrigger)
-    const tl1 = gsap.timeline()
+
+    const tl0 = gsap.timeline()
+
+    const tl1 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".anim1",
+        start: "top top",
+        end: "+=200",
+        pin: false,
+        pinSpacing: false,
+        scrub: 1,
+      },
+    })
     tl1
       .to(".palms", {
         opacity: 1,
-        scale: 1.5,
+        scale: 1,
         duration: 1,
         ease: "none",
       })
-      .to(".box", { scale: 2, duration: 1 }, "-=1")
+      .to("header", { opacity: 1, duration: 1 }, "-=1")
+      .to(".box", { scale: 1.5, duration: 1 }, "-=1")
       .to(".left-palms", {
         duration: 4,
         x: () => -(window.innerWidth / 2),
@@ -206,33 +228,34 @@ const IndexPage = ({ data }) => {
         },
         "-=4"
       )
+      .to("box", { duration: 1, attr: { width: 50, top: 0, left: "50%" } })
+
+    ScrollTrigger.create({ trigger: ".anim1", pin: true })
   })
 
   return (
     <Layout>
       <SEO title="Home" />
-      <ScrollWrapper>
-        <Canvas>
-          <BrandLogo className="box" />
-          <Palms>
-            <LeftPalms className="palms left-palms">
-              <Palm transform="scale(1,1)" />
-              <Palm transform="scale(1,1)" />
-            </LeftPalms>
-            <RightPalms className="palms right-palms">
-              <Palm transform="scale(-1,1)" />
-              <Palm transform="scale(-1,1)" />
-            </RightPalms>
-          </Palms>
-        </Canvas>
 
-        <LandingPageSections>
-          {landingPageSection.map(element => {
-            return <ArticleBlock {...element} />
-          })}
-          ‚
-        </LandingPageSections>
-      </ScrollWrapper>
+      <Canvas className="anim1">
+        <BrandLogo className="box" />
+        <Palms>
+          <LeftPalms className="palms left-palms">
+            <Palm transform="scale(1,1)" />
+            <Palm transform="scale(1,1)" />
+          </LeftPalms>
+          <RightPalms className="palms right-palms">
+            <Palm transform="scale(-1,1)" />
+            <Palm transform="scale(-1,1)" />
+          </RightPalms>
+        </Palms>
+      </Canvas>
+      <LandingPageSections>
+        {landingPageSection.map(element => {
+          return <ArticleBlock {...element} />
+        })}
+        ‚
+      </LandingPageSections>
     </Layout>
   )
 }
