@@ -164,13 +164,18 @@ const Palms = styled.div`
 `
 const ContentWrapper = styled.div`
   width: 100%;
+  padding-top: 10%;
+  padding-bottom: 5%;
   background-image: url('${props => props.imageUrl}');
   background-size:cover;
 `
 
 const MyContainer = styled(Container)`
   height: 100%;
+  padding: 20px;
   background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
   img {
     width: 100%;
   }
