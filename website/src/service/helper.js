@@ -10,7 +10,7 @@ export const getNodesFromQuery = dataSet => {
 
 const builder = imageUrlBuilder({
   projectId: "nkdz9z1y",
-  dataset: "production",
+  dataset: "staging",
 })
 
 export function imageUrlFor(source) {

@@ -5,7 +5,6 @@ import styled from "styled-components"
 
 const ImageContainer = styled.div`
   width: 250px;
-  ${"" /* float: left; */}
   margin: 5px;
   float: ${props => (props.position === "center" ? "unset" : props.position)};
 `
@@ -27,6 +26,14 @@ const ImageComponent = ({ node }) => {
 const blockSerializer = {
   types: {
     inlineImage: ImageComponent,
+    /* block: el => {
+      return (
+        <>
+          <span>{el.children}</span>
+          <br />
+        </>
+      )
+    }, */
   },
 }
 
