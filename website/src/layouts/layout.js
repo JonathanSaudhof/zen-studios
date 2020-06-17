@@ -17,12 +17,11 @@ import { theme } from "./theme"
 import { GlobalStyle } from "./globalstyle"
 
 const Main = styled.main`
-  height: 100vh;
+  height: auto;
   background-image: url("${props => props.backgroundImage}");
   background-size:30px;
   background-color: ${props => props.theme.background};
   padding-top:${props => props.theme.headerHeight};
-  overflow:hidden;
 `
 
 const Footer = styled.footer`

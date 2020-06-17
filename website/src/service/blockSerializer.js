@@ -5,8 +5,9 @@ import styled from "styled-components"
 
 const ImageContainer = styled.div`
   width: 250px;
-  float: inline-end;
-  ${"" /* float: ${props => (props.position === "center" ? "unset" : props.position)}; */}
+  ${"" /* float: left; */}
+  margin: 5px;
+  float: ${props => (props.position === "center" ? "unset" : props.position)};
 `
 
 const ImageComponent = ({ node }) => {
