@@ -61,9 +61,13 @@ export const query = graphql`
 
 const BrandLogo = styled(Logo)`
   position: fixed;
-
   width: 25%;
   height: 25%;
+  @media (max-width: ${props => props.theme.mobile}) {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+  }
 `
 
 const Hero = styled(Jumbotron)`
@@ -191,7 +195,7 @@ const IndexPage = ({ data }) => {
         trigger: ".anim1",
         start: "top top",
         end: "+=200",
-        pin: true,
+        pin: false,
         pinSpacing: false,
         scrub: 1,
       },
