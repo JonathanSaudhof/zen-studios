@@ -17,19 +17,22 @@ import { theme } from "./theme"
 import { GlobalStyle } from "./globalstyle"
 
 const Main = styled.main`
-  background-image:  url("${props =>
-    props.backgroundImage}"),radial-gradient(closest-side,rgba(0,0,0,0), rgba(0,0,0,0.5));
-  background-size:30px;
+  background-image:  url("${props => props.backgroundImage}");
   background-color: ${props => props.theme.background};
+  background-size: 30px;
   padding-top:${props => props.theme.headerHeight};
   background-attachment:fixed;
-  &::after{
-    content: '';
+  &:before{
+    content: ' ';
+    position: fixed;
+    top:0;
+    left:0;
     width: 100%;
-    height: 100%;
-    background-color:white;
-    background-image: radial-gradient(circle, red, yellow, green);
+    height: 100vh;
+    background-image: radial-gradient(circle, rgba(0,0,0,0),rgba(0,0,0,0.8));
+    background-attachment:fixed;
   }
+  
 
 `
 

@@ -59,16 +59,30 @@ export const query = graphql`
   }
 `
 
-const BrandLogo = styled(Logo)`
+const BrandLogo = props => {
+  const Wrapper = styled.div`
+    position: fixed;
+    background-color: black;
+    padding: 0.5rem;
+    border-radius: 3px;
+  `
+  return (
+    <Wrapper className={props.className}>
+      <Logo />
+    </Wrapper>
+  )
+}
+
+/* const BrandLogo = styled(Logo)`
   position: fixed;
-  width: 25%;
-  height: 25%;
+  display: flex;
+  justify-content: center;
+
+  
   @media (max-width: ${props => props.theme.mobile}) {
-    width: 50%;
-    height: 50%;
     margin: auto;
-  }
-`
+  } 
+`*/
 
 const Hero = styled(Jumbotron)`
   background-color: ${props => props.inputColor || "palevioletred"};
@@ -110,7 +124,6 @@ const LeftPalms = styled.div`
   svg {
     top: 0;
     right: 0;
-    transform: ${props => `rotate(${props.rotation})`};
   }
 `
 
@@ -122,9 +135,9 @@ const RightPalms = styled.div`
   height: 100%;
 
   svg {
-    transform: ${props => `rotate(${props.rotation})`};
     top: 0;
     left: 0;
+    transform: scale(-1, 1);
   }
 `
 const Palms = styled.div`
@@ -139,7 +152,6 @@ const Palms = styled.div`
     height: 100%;
     width: auto;
     position: absolute;
-    
     :first-child {
       fill: ${props => props.theme.primaryLight};
       top: 10px;
@@ -195,35 +207,36 @@ const IndexPage = ({ data }) => {
         trigger: ".anim1",
         start: "top top",
         end: "+=200",
-        pin: false,
-        pinSpacing: false,
-        scrub: 1,
+        scrub: true,
       },
     })
     tl1
-      .to(".palms", {
-        opacity: 1,
-        scale: 1,
-        duration: 1,
-        ease: "none",
-      })
-      .to("header", { opacity: 1, duration: 1 }, "-=1")
-      .to(".box", { scale: 1.5, duration: 1 }, "-=1")
-      .to(".left-palms", {
-        duration: 4,
-        x: () => -(window.innerWidth / 2),
-        rotation: 45,
-      })
       .to(
-        ".right-palms",
+        ".left-palms",
         {
-          duration: 4,
-          x: () => window.innerWidth / 2,
-          rotation: -45,
+          duration: 2,
+          x: () => -(window.innerWidth / 2),
+          rotation: 45,
+          transformOrigin: "0% 0%",
         },
         "-=4"
       )
-      .to("box", { duration: 1, attr: { width: 50, top: 0, left: "50%" } })
+      .to(
+        ".right-palms",
+        {
+          duration: 2,
+          x: () => window.innerWidth / 2,
+          rotation: -45,
+          transformOrigin: "100% 0%",
+        },
+        "-=4"
+      )
+      .to("header", { opacity: 1, duration: 1 }, "-=1")
+      .to(
+        ".box",
+        { scale: 1.7, duration: 1, transformOrigin: "50% 50%" },
+        "-=2"
+      )
 
     ScrollTrigger.create({ trigger: ".anim1", pin: true })
   })

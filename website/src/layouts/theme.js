@@ -4,6 +4,6 @@ export const theme = {
   primaryHover: "#343078",
   background: "#1E442F",
   headerColor: "#1B2916",
-  headerHeight: "40px",
+  headerHeight: "60px",
   mobile: "768px",
 }
