@@ -61,14 +61,40 @@ export const query = graphql`
 
 const BrandLogo = props => {
   const Wrapper = styled.div`
-    position: fixed;
+    position: absolute;
     background-color: black;
     padding: 0.5rem;
     border-radius: 3px;
+    @keyframes flicker {
+      0% {
+        opacity: 1;
+      }
+      3% {
+        opacity: 0.4;
+      }
+      6% {
+        opacity: 1;
+      }
+      7% {
+        opacity: 0.4;
+      }
+      8% {
+        opacity: 1;
+      }
+      9% {
+        opacity: 0.4;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
   `
   return (
     <Wrapper className={props.className}>
-      <Logo />
+      <Logo width={200} height="auto" />
     </Wrapper>
   )
 }
@@ -212,7 +238,8 @@ const IndexPage = ({ data }) => {
         trigger: ".anim1",
         start: "top top",
         end: "+=200",
-        scrub: true,
+
+        scrub: 1,
       },
     })
     tl1
@@ -242,8 +269,7 @@ const IndexPage = ({ data }) => {
         { scale: 1.7, duration: 1, transformOrigin: "50% 50%" },
         "-=2"
       )
-
-    ScrollTrigger.create({ trigger: ".anim1", pin: true })
+      .to(".box", { duration: 1, attr: { x: "0%", y: "0%" } })
   })
 
   return (

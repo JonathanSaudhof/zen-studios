@@ -17,6 +17,7 @@ import { theme } from "./theme"
 import { GlobalStyle } from "./globalstyle"
 
 const Main = styled.main`
+
   background-image:  url("${props => props.backgroundImage}");
   background-color: ${props => props.theme.background};
   background-size: 30px;
