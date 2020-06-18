@@ -8,7 +8,6 @@ export const BrandLogo = props => {
     border-radius: 5px;
 
     background-color: ${props => props.theme.primaryDark};
-
     @keyframes flicker {
       0% {
         opacity: 1;

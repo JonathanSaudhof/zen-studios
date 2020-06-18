@@ -6,4 +6,7 @@ export const theme = {
   headerColor: "#1B2916",
   headerHeight: "60px",
   mobile: "768px",
+  mobileMenuBackground: "#1B2916",
+  toggleCloseColor: "#3EDCFF",
+  toggleOpenColor: "#3EDCFF",
 }

@@ -18,7 +18,14 @@ const MyHeader = styled.header`
   opacity: 0;
   position: fixed;
 `
-
+const HeaderLogo = styled(BrandLogo)`
+  margin-top: 5px;
+  @media (max-width: ${props => props.theme.mobile}) {
+    svg {
+      width: 100px;
+    }
+  }
+`
 const Header = ({ siteTitle, showLogo, logoUrl }) => {
   // TODO: make it dynamic!
   console.log("ShowLogo", showLogo)
@@ -28,9 +35,9 @@ const Header = ({ siteTitle, showLogo, logoUrl }) => {
         <Row className="justify-content-between">
           <Col></Col>
           <Col className="d-flex justify-content-center">
-            {showLogo ? <BrandLogo width="200px" className="headerLogo" /> : ""}
+            {showLogo ? <HeaderLogo width="150" className="headerLogo" /> : ""}
           </Col>
-          <Col>
+          <Col className="d-flex justify-content-end">
             <Navigation></Navigation>
           </Col>
         </Row>

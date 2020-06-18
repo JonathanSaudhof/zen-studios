@@ -33,7 +33,12 @@ const Main = styled.main`
     background-image: radial-gradient(circle, rgba(0,0,0,0),rgba(0,0,0,0.8));
     background-attachment:fixed;
   }
-  
+  @media (max-width: ${props => props.theme.mobile}){
+
+    &:before{
+      background-image: radial-gradient(circle , rgba(0,0,0,0),rgba(0,0,0,0.5));
+    }
+  }
 
 `
 

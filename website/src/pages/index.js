@@ -82,13 +82,6 @@ const LandingPageSections = styled.section`
   height: 100%;
 `
 
-const ScrollWrapper = styled.div`
-  position: relative;
-  overflow-y: scroll;
-  width: 100%;
-  height: auto;
-`
-
 const LeftPalms = styled.div`
   position: relative;
   top: 0;
@@ -128,12 +121,12 @@ const Palms = styled.div`
     width: auto;
     position: absolute;
     :first-child {
-      fill: ${props => props.theme.primaryLight};
-      top: 10px;
-      height: 95%;
+      fill: #2f4420;
+      top: 5px;
+      
     }
     :nth-child(2) {
-      fill: ${props => props.theme.primaryDark};
+      fill: ${({ theme }) => theme.primaryLight};
     }
   }s
 `
@@ -160,6 +153,17 @@ const MyContainer = styled(Container)`
   overflow: hidden;
   img {
     width: 100%;
+  }
+`
+
+const StartPageLogo = styled(BrandLogo)`
+  top: ${props => window.innerHeight / 5}px;
+  @media (max-width: ${props => props.theme.mobile}) {
+    margin-top: 5px;
+    top: ${props => window.innerHeight / 5}px;
+    svg {
+      width: 150px;
+    }
   }
 `
 
@@ -201,7 +205,7 @@ const IndexPage = ({ data }) => {
       .to(
         ".left-palms",
         {
-          duration: 2,
+          duration: 4,
           x: () => -(window.innerWidth / 2),
           rotation: 45,
           transformOrigin: "0% 0%",
@@ -211,17 +215,12 @@ const IndexPage = ({ data }) => {
       .to(
         ".right-palms",
         {
-          duration: 2,
+          duration: 4,
           x: () => window.innerWidth / 2,
           rotation: -45,
           transformOrigin: "100% 0%",
         },
         "-=4"
-      )
-      .to(
-        ".box",
-        { scale: 1.7, duration: 4, transformOrigin: "50% 50%" },
-        "-=2"
       )
       .to(".box", { duration: 4, scale: 1, ease: "none" })
       .to("header", { opacity: 1, duration: 2 }, "+=1")
@@ -232,7 +231,7 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
 
       <Canvas className="anim1">
-        <BrandLogo className="box" width="200" />
+        <StartPageLogo className="box" width="300" />
         <Palms>
           <LeftPalms className="palms left-palms">
             <Palm transform="scale(1,1)" />

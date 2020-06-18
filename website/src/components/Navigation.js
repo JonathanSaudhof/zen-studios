@@ -9,6 +9,19 @@ export const Navbar = styled.nav`
   display: flex;
   justify-content: flex-end;
   height: 100%;
+  position: fixed;
+  overflow: scroll;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  z-index: 99;
+  top: 0px;
+  background-color: ${({ open }) => (open ? "rgba(0, 0, 0, 0.5)" : "unset")};
+  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
+  transition: ${({ theme }) => theme.mobileMenuTransition};
+  transition: left 10ms linear;
+
   @media (max-width: ${({ theme }) => theme.mobile}) {
     position: fixed;
     overflow: scroll;
@@ -25,11 +38,21 @@ export const Navbar = styled.nav`
   }
 `
 export const Nav = styled.ul`
-  display: flex;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  height: auto;
+  // display: flex;
+  // padding: 0;
+  // margin: 0;
+  // list-style: none;
+  // height: auto;
+
+  position: absolute;
+  left: 0;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.mobileMenuBackground};
+  width: 33%;
+  min-height: 100%;
+  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
+  transition: ${({ theme }) => theme.mobileMenuTransition};
+
   @media (max-width: ${({ theme }) => theme.mobile}) {
     position: absolute;
     left: 0;
@@ -84,16 +107,12 @@ const LinkItem = styled(Link)`
 `
 
 const ToggleWrapper = styled.div`
-  display: none;
-  font-size: 1.5rem;
 
-  @media (max-width: ${({ theme }) => theme.mobile}) {
     display: flex;
     width: 25px;
     height: 25px;
-    position: fixed;
+    position: absolute;
     z-index: 100;
-    right: 0.8em;
     top: 0.8em;
     display: flex;
     border-radius: 0.2em;
@@ -104,7 +123,8 @@ const ToggleWrapper = styled.div`
     span {
       transition: ${({ theme }) => theme.mobileMenuTransition};
       transform-origin: 1px;
-      border-color: ${({ open }) => (open ? "white" : "black")};
+      border-color: ${({ open, theme }) =>
+        open ? theme.toggleOpenColor : theme.toggleCloseColor};
       &:nth-child(2) {
         border: ${({ open }) => (open ? "unset" : open)};
       }
@@ -115,7 +135,35 @@ const ToggleWrapper = styled.div`
         transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")};
       }
     }
-  }
+  // @media (max-width: ${({ theme }) => theme.mobile}) {
+  //   display: flex;
+  //   width: 25px;
+  //   height: 25px;
+  //   position: fixed;
+  //   z-index: 100;
+  //   right: 0.8em;
+  //   top: 0.8em;
+  //   display: flex;
+  //   border-radius: 0.2em;
+  //   flex-direction: column;
+  //   justify-content: space-around;
+  //   transition: ${({ theme }) => theme.mobileMenuTransition};
+
+  //   span {
+  //     transition: ${({ theme }) => theme.mobileMenuTransition};
+  //     transform-origin: 1px;
+  //     border-color: ${({ open }) => (open ? "white" : "black")};
+  //     &:nth-child(2) {
+  //       border: ${({ open }) => (open ? "unset" : open)};
+  //     }
+  //     &:first-child {
+  //       transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")};
+  //     }
+  //     &:last-child {
+  //       transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")};
+  //     }
+  //   }
+  // }
 `
 const Line = styled.span`
   width: 100%;
