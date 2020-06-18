@@ -191,11 +191,10 @@ const IndexPage = ({ data }) => {
 
     const tl1 = gsap.timeline({
       scrollTrigger: {
-        trigger: "Header",
-        start: "top top",
-        end: "60",
+        trigger: "Body",
+        start: "60",
+        end: "500",
         scrub: 1,
-        marks: true,
       },
     })
     tl1
@@ -225,7 +224,7 @@ const IndexPage = ({ data }) => {
         "-=2"
       )
       .to(".box", { duration: 4, scale: 1, ease: "none" })
-      .to("header", { opacity: 1, duration: 2 })
+      .to("header", { opacity: 1, duration: 2 }, "+=1")
   })
 
   return (
@@ -233,7 +232,7 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
 
       <Canvas className="anim1">
-        <BrandLogo className="box" width="200px" />
+        <BrandLogo className="box" width="200" />
         <Palms>
           <LeftPalms className="palms left-palms">
             <Palm transform="scale(1,1)" />

@@ -5,9 +5,10 @@ import styled from "styled-components"
 export const BrandLogo = props => {
   const Wrapper = styled.div`
     position: absolute;
+    border-radius: 5px;
+
     background-color: ${props => props.theme.primaryDark};
 
-    border-radius: 3px;
     @keyframes flicker {
       0% {
         opacity: 1;
@@ -44,7 +45,7 @@ export const BrandLogo = props => {
   `
   return (
     <Wrapper className={props.className}>
-      <Logo width={props.width} height="auto" />
+      <Logo width={props.width} height="auto" viewBox="0 0 105 85" />
     </Wrapper>
   )
 }
