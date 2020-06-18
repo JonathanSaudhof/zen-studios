@@ -67,7 +67,7 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={data.site.siteMetadata.title} showLogo={true} />
         <Main backgroundImage={data.backgroundImage.publicURL}>
           {children}
           <Footer>

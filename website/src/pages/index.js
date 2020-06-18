@@ -9,7 +9,8 @@ import styled from "styled-components"
 import { Container, Jumbotron } from "react-bootstrap"
 
 import { getNodesFromQuery } from "../service/helper"
-import Logo from "../assets/logo.svg"
+
+import { BrandLogo } from "../components/BrandLogo"
 import Palm from "../assets/palme-1.svg"
 import BlockContent from "@sanity/block-content-to-react"
 import blockSerializer from "../service/blockSerializer"
@@ -58,58 +59,6 @@ export const query = graphql`
     }
   }
 `
-
-const BrandLogo = props => {
-  const Wrapper = styled.div`
-    position: absolute;
-    background-color: black;
-    padding: 0.5rem;
-    border-radius: 3px;
-    @keyframes flicker {
-      0% {
-        opacity: 1;
-      }
-      3% {
-        opacity: 0.4;
-      }
-      6% {
-        opacity: 1;
-      }
-      7% {
-        opacity: 0.4;
-      }
-      8% {
-        opacity: 1;
-      }
-      9% {
-        opacity: 0.4;
-      }
-      10% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-  `
-  return (
-    <Wrapper className={props.className}>
-      <Logo width={200} height="auto" />
-    </Wrapper>
-  )
-}
-
-/* const BrandLogo = styled(Logo)`
-  position: fixed;
-  display: flex;
-  justify-content: center;
-
-  
-  @media (max-width: ${props => props.theme.mobile}) {
-    margin: auto;
-  } 
-`*/
-
 const Hero = styled(Jumbotron)`
   background-color: ${props => props.inputColor || "palevioletred"};
   min-height: 100vh;
@@ -242,11 +191,11 @@ const IndexPage = ({ data }) => {
 
     const tl1 = gsap.timeline({
       scrollTrigger: {
-        trigger: ".anim1",
+        trigger: "Header",
         start: "top top",
-        end: "+=200",
-
+        end: "60",
         scrub: 1,
+        marks: true,
       },
     })
     tl1
@@ -270,13 +219,13 @@ const IndexPage = ({ data }) => {
         },
         "-=4"
       )
-      .to("header", { opacity: 1, duration: 1 }, "-=1")
       .to(
         ".box",
-        { scale: 1.7, duration: 1, transformOrigin: "50% 50%" },
+        { scale: 1.7, duration: 4, transformOrigin: "50% 50%" },
         "-=2"
       )
-      .to(".box", { duration: 1, attr: { x: "0%", y: "0%" } })
+      .to(".box", { duration: 4, scale: 1, ease: "none" })
+      .to("header", { opacity: 1, duration: 2 })
   })
 
   return (
@@ -284,7 +233,7 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
 
       <Canvas className="anim1">
-        <BrandLogo className="box" />
+        <BrandLogo className="box" width="200px" />
         <Palms>
           <LeftPalms className="palms left-palms">
             <Palm transform="scale(1,1)" />
