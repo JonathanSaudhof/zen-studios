@@ -192,8 +192,15 @@ const ContentWrapper = styled.div`
   width: 100%;
   padding-top: 10%;
   padding-bottom: 5%;
+  margin-bottom: 5%;
   background-image: url('${props => props.imageUrl}');
   background-size:cover;
+  h1 {
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5%;
+  }
 `
 
 const MyContainer = styled(Container)`
@@ -211,8 +218,8 @@ const ArticleBlock = props => {
   return (
     <>
       <ContentWrapper imageUrl={imageUrlFor(props.image).width(960).url()}>
+        <h1>{props.title}</h1>
         <MyContainer>
-          <h1>{props.title}</h1>
           <BlockContent
             blocks={props._rawContent}
             serializers={blockSerializer}
