@@ -60,23 +60,6 @@ export default {
               },
             ],
           },
-          {
-            title: "Button",
-            name: "button",
-            type: "object",
-            fields: [
-              {
-                title: "Link",
-                name: "href",
-                type: "url",
-              },
-              {
-                title: "Button Text",
-                name: "text",
-                type: "string",
-              },
-            ],
-          },
         ],
       },
     },
@@ -87,10 +70,10 @@ export default {
       type: "inlineImage",
       options: { hotspot: true },
     },
-    // {
-    //   title: "inlineCta",
-    //   name: "inlineCta",
-    //   type: "inlineCta",
-    // },
+    {
+      title: "Button",
+      name: "inlineCta",
+      type: "inlineCta",
+    },
   ],
 };

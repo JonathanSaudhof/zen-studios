@@ -6,7 +6,7 @@ export default {
     {
       name: "action",
       type: "string",
-      title: "Action",
+      title: "Button Text",
     },
     {
       name: "url",

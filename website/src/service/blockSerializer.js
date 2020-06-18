@@ -10,8 +10,22 @@ const ImageContainer = styled.div`
   float: ${props => (props.position === "center" ? "unset" : props.position)};
 `
 
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  a {
+    width: 250px;
+    color: ${props => props.theme.blockCTA};
+    background-color: ${props => props.theme.primaryDark};
+    &:hover {
+      background-color: ${props => props.theme.primaryHover};
+    }
+  }
+`
+
 const ImageComponent = ({ node }) => {
-  console.log("NODE", node.caption)
+  // console.log("NODE", node.caption)
 
   return (
     <ImageContainer position={node.position}>
@@ -24,17 +38,21 @@ const ImageComponent = ({ node }) => {
   )
 }
 
+const ButtonComponent = ({ node }) => {
+  console.log("NODE", node.url)
+  return (
+    <ButtonContainer>
+      <a className="btn btn-primary" href={node.url}>
+        {node.action}
+      </a>
+    </ButtonContainer>
+  )
+}
+
 const blockSerializer = {
   types: {
     inlineImage: ImageComponent,
-    /* block: el => {
-      return (
-        <>
-          <span>{el.children}</span>
-          <br />
-        </>
-      )
-    }, */
+    inlineCta: ButtonComponent,
   },
 }
 
