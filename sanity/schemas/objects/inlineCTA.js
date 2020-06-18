@@ -1,6 +1,6 @@
 export default {
   name: "inlineCTA",
-  type: "cta",
+  type: "object",
   fields: [
     {
       name: "action",
