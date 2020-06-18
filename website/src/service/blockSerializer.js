@@ -5,12 +5,13 @@ import styled from "styled-components"
 
 const ImageContainer = styled.div`
   width: 250px;
-  margin: 5px;
+  margin-right: ${props => (props.position === "right" ? "0px" : "10px")};
+  margin-left: ${props => (props.position === "left" ? "0px" : "10px")};
   float: ${props => (props.position === "center" ? "unset" : props.position)};
 `
 
 const ImageComponent = ({ node }) => {
-  console.log("NODE", node.position)
+  console.log("NODE", node.caption)
 
   return (
     <ImageContainer position={node.position}>
