@@ -87,6 +87,10 @@ export default {
       type: "inlineImage",
       options: { hotspot: true },
     },
-    { type: "inlineCTA" },
+    // {
+    //   title: "inlineCta",
+    //   name: "inlineCta",
+    //   type: "inlineCta",
+    // },
   ],
 };

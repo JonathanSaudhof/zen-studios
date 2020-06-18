@@ -17,7 +17,7 @@ import landingPage from "./LandigPage";
 
 import socialMedia from "./objects/socialMedia";
 import inlineImage from "./objects/inlineImage";
-import inlineCTA from "./objects/inlineCTA";
+import inlineCta from "./objects/inlineCta";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -38,7 +38,7 @@ export default createSchema({
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     inlineImage,
-    inlineCTA,
+    inlineCta,
     blockContent,
     socialMedia,
   ]),
