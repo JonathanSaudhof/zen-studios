@@ -10,7 +10,7 @@ const FooterWrapper = styled.footer`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #c4c4c4;
+  color: ${props => props.theme.footerTextColor};
   p {
     margin: 0;
   }
