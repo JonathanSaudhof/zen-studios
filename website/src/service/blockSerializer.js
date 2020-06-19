@@ -27,6 +27,15 @@ const ImageComponent = ({ node }) => {
 const blockSerializer = {
   types: {
     inlineImage: ImageComponent,
+    inlineCta: ({ node }) => (
+      <p>
+        <center>
+          <a className="btn btn-warning" href={node.url}>
+            {node.action}
+          </a>
+        </center>
+      </p>
+    ),
     /* block: el => {
       return (
         <>

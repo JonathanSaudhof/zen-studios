@@ -11,9 +11,14 @@ const MyHeader = styled.header`
   justify-content: space-between;
   background-color: ${props =>
     props.theme.headerColor ? props.theme.headerColor : "#fff"};
+  background-image: radial-gradient(
+    circle at 50%,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(0, 0, 0, 0.5)
+  );
   height: ${props => props.theme.headerHeight};
   width: 100%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
   z-index: 99;
   opacity: 0;
   position: fixed;
