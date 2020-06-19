@@ -1,21 +1,36 @@
 import React from "react"
+import styled from "styled-components"
 import {
-  FaFacebookSquare as facebook,
-  FaYoutube as youtube,
-  FaTwitter as twitter,
-  FaInstagram as instagram,
+  FaFacebookSquare,
+  FaYoutube,
+  FaTwitter,
+  FaInstagram,
 } from "react-icons/fa"
 
+const SocialLink = styled.a`
+  color: ${props => props.theme.footerTextColor};
+  margin-right: 1rem;
+  &:hover {
+    color: ${props => props.theme.footerTextColor};
+  }
+`
 const SocialMediaIcons = ({ accounts }) => {
-  console.log("accounts", accounts)
-
-  // const accounts;
+  const accountIcons = {
+    facebook: <FaFacebookSquare />,
+    youtube: <FaYoutube />,
+    twitter: <FaTwitter />,
+    instagram: <FaInstagram />,
+  }
 
   return (
     <div>
-      {accounts.map(element => (
-        <a href={element.url}>{element.platform}</a>
-      ))}
+      {accounts.map(element => {
+        return (
+          <SocialLink href={element.url} target="_blank">
+            {accountIcons[element.platform]}
+          </SocialLink>
+        )
+      })}
     </div>
   )
 }
