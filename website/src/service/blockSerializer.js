@@ -11,13 +11,26 @@ const ImageContainer = styled.div`
 `
 
 const ButtonContainer = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
   a {
-    width: 250px;
-    color: ${props => props.theme.blockCTA};
-    background-color: ${props => props.theme.primaryDark};
+    width: 300px;
+    height: 60px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 100%
+      ),
+      #cf6e14;
+    border: 2px solid #d5e3fb;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
     &:hover {
       background-color: ${props => props.theme.primaryHover};
     }

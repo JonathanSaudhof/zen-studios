@@ -136,19 +136,25 @@ const ContentWrapper = styled.div`
   padding-bottom: 5%;
   margin-bottom: 5%;
   background-image: url('${props => props.imageUrl}');
-  background-size:cover;
+  background-size: cover;
+  border: 1px solid #000000;
+  box-sizing: border-box;
   h1 {
-    color: white;
-    display: flex;
-    justify-content: center;
+    color: #fafafa;
+    ${"" /* display: flex;
+    justify-content: center; */}
     padding-bottom: 5%;
   }
 `
 
 const MyContainer = styled(Container)`
   height: 100%;
+  left: 20.83%;
+  right: 20.89%;
+  top: -7.21%;
+  bottom: 2.88%;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(238, 238, 238, 0.8);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   img {
@@ -170,9 +176,13 @@ const StartPageLogo = styled(BrandLogo)`
 const ArticleBlock = props => {
   return (
     <>
-      <ContentWrapper imageUrl={imageUrlFor(props.image).width(960).url()}>
-        <h1>{props.title}</h1>
-        <MyContainer>
+      <ContentWrapper
+        imageUrl={imageUrlFor(props.image).width(960).blur(30).url()}
+      >
+        <Container>
+          <h1>{props.title}</h1>
+        </Container>
+        <MyContainer className="foreground">
           <BlockContent
             blocks={props._rawContent}
             serializers={blockSerializer}

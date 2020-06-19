@@ -22,18 +22,18 @@ html, body {
   }
 
   h2{
-    font-size: 36px;
+    font-size: 32px;
     font-family: "Source Sans Pro";
     font-style: normal; 
-    font-weight: 400; 
-    line-height: 40px;
+    font-weight: 600; 
+    line-height: 48px;
   }
   h3{
     font-size: 24px;
     font-family: "Source Sans Pro";
     font-style: normal;
-    font-weight: 300;
-    line-height: 30px;
+    font-weight: 400;
+    line-height: 32px;
   }
 
   h4{
@@ -48,11 +48,16 @@ html, body {
   p{
     font-size: 18px;
     font-style: normal;
-    font-weight: 200;
+    font-weight: 300;
     line-height: 1.5em;
   }
 
   a {
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
     text-decoration: none;
     font-weight: 500;
     color: ${({ theme }) => theme.linkColor};
