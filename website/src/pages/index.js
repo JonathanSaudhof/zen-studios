@@ -121,7 +121,7 @@ const Palms = styled.div`
     width: auto;
     position: absolute;
     :first-child {
-      fill: #2f4420;
+      fill: ${({ theme }) => theme.primaryDark};
       top: 5px;
       
     }
@@ -170,7 +170,9 @@ const StartPageLogo = styled(BrandLogo)`
 const ArticleBlock = props => {
   return (
     <>
-      <ContentWrapper imageUrl={imageUrlFor(props.image).width(960).url()}>
+      <ContentWrapper
+        imageUrl={imageUrlFor(props.image).width(960).blur(30).url()}
+      >
         <h1>{props.title}</h1>
         <MyContainer>
           <BlockContent

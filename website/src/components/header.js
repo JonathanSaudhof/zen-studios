@@ -13,7 +13,7 @@ const MyHeader = styled.header`
     props.theme.headerColor ? props.theme.headerColor : "#fff"};
   background-image: radial-gradient(
     circle at 50%,
-    rgba(255, 255, 255, 0.08) 20%,
+    rgba(255, 255, 255, 0.05) 10%,
     rgba(0, 0, 0, 0.5)
   );
   height: ${props => props.theme.headerHeight};
