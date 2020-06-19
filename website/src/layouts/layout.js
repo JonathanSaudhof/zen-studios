@@ -62,12 +62,8 @@ const Layout = ({ children }) => {
           }
         }
         socialMedia {
-          youtube
-          twitter
-          linkedin
-          instagram
-          github
-          facebook
+          platform
+          url
         }
         title
       }
@@ -98,7 +94,7 @@ const Layout = ({ children }) => {
         <Footer
           navigation={data.footerNav?.items}
           copyright={data.site?.title}
-          socialMedia={data.site.title}
+          socialMedia={data.siteSettings.socialMedia}
         />
       </>
     </ThemeProvider>
