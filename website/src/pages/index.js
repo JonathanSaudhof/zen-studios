@@ -121,7 +121,7 @@ const Palms = styled.div`
     width: auto;
     position: absolute;
     :first-child {
-      fill: #2f4420;
+      fill: ${({ theme }) => theme.primaryDark};
       top: 5px;
       
     }
@@ -182,7 +182,7 @@ const ArticleBlock = props => {
         <Container>
           <h1>{props.title}</h1>
         </Container>
-        <MyContainer className="foreground">
+        <MyContainer>
           <BlockContent
             blocks={props._rawContent}
             serializers={blockSerializer}

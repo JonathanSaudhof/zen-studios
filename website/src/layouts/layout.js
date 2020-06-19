@@ -11,7 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled, { ThemeProvider } from "styled-components"
 
 import Header from "../components/header"
-import { Container } from "react-bootstrap"
+import Footer from "../components/footer"
 
 import { theme } from "./theme"
 import { GlobalStyle } from "./globalstyle"
@@ -42,17 +42,6 @@ const Main = styled.main`
 
 `
 
-const Footer = styled.footer`
-  height: 40px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #c4c4c4;
-  p {
-    margin: 0;
-  }
-`
-
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -65,6 +54,38 @@ const Layout = ({ children }) => {
         id
         publicURL
       }
+
+      siteSettings: sanitySiteSetting {
+        favIcon {
+          asset {
+            url
+          }
+        }
+        socialMedia {
+          youtube
+          twitter
+          linkedin
+          instagram
+          github
+          facebook
+        }
+        title
+      }
+
+      footerNav: sanityNavigation(name: { eq: "secondary" }) {
+        id
+        items {
+          title
+          redirect
+          type
+          slug {
+            current
+            _type
+            _key
+          }
+          id
+        }
+      }
     }
   `)
 
@@ -73,14 +94,12 @@ const Layout = ({ children }) => {
       <>
         <GlobalStyle />
         <Header siteTitle={data.site.siteMetadata.title} showLogo={true} />
-        <Main backgroundImage={data.backgroundImage.publicURL}>
-          {children}
-          <Footer>
-            <Container>
-              <p>Copyright © mein-hunde-ratgeber.de</p>
-            </Container>
-          </Footer>
-        </Main>
+        <Main backgroundImage={data.backgroundImage.publicURL}>{children}</Main>
+        <Footer
+          navigation={data.footerNav?.items}
+          copyright={data.site?.title}
+          socialMedia={data.site.title}
+        />
       </>
     </ThemeProvider>
   )
