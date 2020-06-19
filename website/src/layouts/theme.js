@@ -9,4 +9,5 @@ export const theme = {
   mobileMenuBackground: "#1B2916",
   toggleCloseColor: "#3EDCFF",
   toggleOpenColor: "#3EDCFF",
+  blockCTA: "#0AD2FF",
 }
