@@ -1,43 +1,25 @@
 export default {
-  type: 'object',
-  name: 'socialMedia',
-  fieldsets: [{ name: 'social', title: 'Social media handles' }],
+  type: "object",
+  name: "socialMedia",
+  fieldsets: [{ name: "social", title: "Social media handles" }],
   fields: [
     {
-      title: 'Twitter',
-      name: 'twitter',
-      type: 'string',
-      fieldset: 'social',
+      title: "Platform",
+      name: "platform",
+      type: "string",
+      options: {
+        list: [
+          { value: "twitter", title: "Twitter" },
+          { value: "facebook", title: "Facebook" },
+          { value: "instagram", title: "Instagram" },
+          { value: "youtube", title: "YouTube" },
+        ],
+      },
     },
     {
-      title: 'Instagram',
-      name: 'instagram',
-      type: 'string',
-      fieldset: 'social',
-    },
-    {
-      title: 'Facebook',
-      name: 'facebook',
-      type: 'string',
-      fieldset: 'social',
-    },
-    {
-      title: 'YouTube',
-      name: 'youtube',
-      type: 'string',
-      fieldset: 'social',
-    },
-    {
-      title: 'Github',
-      name: 'github',
-      type: 'string',
-      fieldset: 'social',
-    },
-    {
-      title: 'LinkedIn',
-      name: 'linkedin',
-      type: 'string',
-      fieldset: 'social',
+      title: "Profile Link",
+      name: "url",
+      type: "string",
     },
   ],
 };

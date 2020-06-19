@@ -39,7 +39,8 @@ export default {
     {
       name: "socialMedia",
       title: "Social Media Accounts",
-      type: "socialMedia",
+      type: "array",
+      of: [{ type: "socialMedia" }],
     },
     {
       name: "author",
