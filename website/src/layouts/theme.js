@@ -10,4 +10,5 @@ export const theme = {
   toggleCloseColor: "#3EDCFF",
   toggleOpenColor: "#3EDCFF",
   blockCTA: "#0AD2FF",
+  blockCTAHover: "#E98120",
 }

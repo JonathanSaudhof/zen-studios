@@ -9,7 +9,7 @@ import {
 const SocialMediaIcons = ({ accounts }) => {
   console.log("accounts", accounts)
 
-  const accounts = 
+  // const accounts;
 
   return (
     <div>
