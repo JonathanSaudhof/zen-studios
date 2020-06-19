@@ -1,7 +1,10 @@
+import { AiFillSetting } from "react-icons/ai";
+import socialMedia from "./objects/socialMedia";
 export default {
   name: "siteSetting",
   title: "Site Settings",
   type: "document",
+  icon: AiFillSetting,
   initialValue: {
     online: true,
   },
@@ -32,6 +35,11 @@ export default {
       options: {
         layout: "tags",
       },
+    },
+    {
+      name: "socialMedia",
+      title: "Social Media Accounts",
+      type: "socialMedia",
     },
     {
       name: "author",

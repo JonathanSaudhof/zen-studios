@@ -1,7 +1,9 @@
+import { RiArticleLine } from "react-icons/ri";
 export default {
   name: "post",
   title: "Post",
   type: "document",
+  icon: RiArticleLine,
   initialValue: {
     featured: false,
     publishedAt: new Date().toISOString(),

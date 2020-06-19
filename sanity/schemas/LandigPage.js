@@ -1,7 +1,9 @@
+import { RiMenuAddLine } from "react-icons/ri";
 export default {
   name: "landingPageSection",
   title: "Landing page section",
   type: "document",
+  icon: RiMenuAddLine,
   fields: [
     {
       name: "title",

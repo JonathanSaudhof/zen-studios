@@ -12,6 +12,7 @@ import page from "./page";
 import author from "./author";
 import siteSetting from "./siteSetting";
 import landingPage from "./LandigPage";
+import navigation from "./navigation";
 
 //objects
 
@@ -32,6 +33,7 @@ export default createSchema({
     category,
     landingPage,
     page,
+    navigation,
     author,
 
     siteSetting,
