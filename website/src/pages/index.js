@@ -6,7 +6,7 @@ import Layout from "../layouts/layout"
 import SEO from "../components/seo"
 
 import styled from "styled-components"
-import { Container, Jumbotron } from "react-bootstrap"
+import { Container, Jumbotron, Row } from "react-bootstrap"
 
 import { getNodesFromQuery } from "../service/helper"
 
@@ -141,19 +141,17 @@ const ContentWrapper = styled.div`
   box-sizing: border-box;
   h1 {
     color: #fafafa;
+    text-align: left;
     ${"" /* display: flex;
     justify-content: center; */}
     padding-bottom: 5%;
+    padding-left: 50px;
   }
 `
 
 const MyContainer = styled(Container)`
   height: 100%;
-  left: 20.83%;
-  right: 20.89%;
-  top: -7.21%;
-  bottom: 2.88%;
-  padding: 20px;
+  padding: 50px;
   background-color: rgba(238, 238, 238, 0.8);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
@@ -180,7 +178,9 @@ const ArticleBlock = props => {
         imageUrl={imageUrlFor(props.image).width(960).blur(30).url()}
       >
         <Container>
-          <h1>{props.title}</h1>
+          <Row>
+            <h1>{props.title}</h1>
+          </Row>
         </Container>
         <MyContainer>
           <BlockContent

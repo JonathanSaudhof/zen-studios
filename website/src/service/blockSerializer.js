@@ -4,9 +4,10 @@ import { imageUrlFor } from "./helper"
 import styled from "styled-components"
 
 const ImageContainer = styled.div`
-  width: 250px;
-  margin-right: ${props => (props.position === "right" ? "0px" : "10px")};
-  margin-left: ${props => (props.position === "left" ? "0px" : "10px")};
+  width: 505px;
+  max-width: 50%;
+  margin-right: ${props => (props.position === "right" ? "0px" : "25px")};
+  margin-left: ${props => (props.position === "left" ? "0px" : "25px")};
   float: ${props => (props.position === "center" ? "unset" : props.position)};
 `
 
@@ -32,7 +33,8 @@ const ButtonContainer = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 3px;
     &:hover {
-      background-color: ${props => props.theme.primaryHover};
+      background-color: ${props => props.theme.blockCTAHover};
+      border: 2px solid #d6300a;
     }
   }
 `
