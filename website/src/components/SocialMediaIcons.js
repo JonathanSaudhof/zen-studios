@@ -15,8 +15,6 @@ const SocialLink = styled.a`
   }
 `
 const SocialMediaIcons = ({ accounts }) => {
-  console.log("accounts", accounts)
-
   const accountIcons = {
     facebook: <FaFacebookSquare />,
     youtube: <FaYoutube />,
@@ -27,9 +25,8 @@ const SocialMediaIcons = ({ accounts }) => {
   return (
     <div>
       {accounts.map(element => {
-        console.log("AccountIcons:", accountIcons[element.platform])
         return (
-          <SocialLink href={element.url}>
+          <SocialLink href={element.url} target="_blank">
             {accountIcons[element.platform]}
           </SocialLink>
         )

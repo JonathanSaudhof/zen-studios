@@ -56,11 +56,10 @@ html, body {
   a {
     font-family: Source Sans Pro;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 300;
     font-size: 18px;
     line-height: 23px;
     text-decoration: none;
-    font-weight: 500;
     color: ${({ theme }) => theme.linkColor};
     &:hover{
       text-decoration: none;

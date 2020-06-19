@@ -93,7 +93,7 @@ const Layout = ({ children }) => {
         <Main backgroundImage={data.backgroundImage.publicURL}>{children}</Main>
         <Footer
           navigation={data.footerNav?.items}
-          copyright={data.site?.title}
+          copyright={data.siteSettings?.title}
           socialMedia={data.siteSettings.socialMedia}
         />
       </>
