@@ -44,64 +44,49 @@
 //   })
 // }
 
-// // async function createPages(graphql, actions, reporter) {
-// //   const { createPage } = actions
-// //   const result = await graphql(`
-// //     query {
-// //       allSanityPage(filter: { slug: { current: { ne: null } } }) {
-// //         edges {
-// //           node {
-// //             id
-// //             title
-// //             category {
-// //               title
-// //             }
-// //             type
-// //             slug {
-// //               current
-// //             }
-// //           }
-// //         }
-// //       }
-// //     }
-// //   `)
+async function createPages(graphql, actions, reporter) {
+  const { createPage } = actions
+  const result = await graphql(`
+    query {
+      allSanityPage(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            title
+            category {
+              title
+            }
+            type
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `)
 
-// //   if (result.errors) throw result.errors
+  if (result.errors) throw result.errors
 
-// //   const postEdges = (result.data.allSanityPage || {}).edges || []
+  const postEdges = (result.data.allSanityPage || {}).edges || []
 
-// //   postEdges.forEach((edge, index) => {
-// //     const { id, slug = {}, type, title, category } = edge.node
-// //     let path, component
-// //     let context = { id }
+  postEdges.forEach((edge, index) => {
+    const { id, slug = {}, type, title, category } = edge.node
+    let path, component
+    let context = { id }
 
-// //     /*   switch (type) {
-// //       case "single": */
-// //     path = `/${slug.current}/`
-// //     component = require.resolve("./src/templates/page.tsx")
-// //     reporter.info(`Creating Single: ${path}`)
-// //     /*       break
-// //       case "category":
-// //         path = `/blog/${category?.title}`
-// //         component = require.resolve("./src/templates/categoryOverviewPage.tsx")
-// //         reporter.info(`Creating Blog Category Page: ${path}`)
-// //         context = {
-// //           title: title,
-// //           category: category.title,
-// //         }
-// //         break
-// //     }
-// //  */
-// //     createPage({
-// //       path,
-// //       component,
-// //       context,
-// //     })
-// //   })
-// // }
+    path = `/${slug.current}/`
+    component = require.resolve("./src/templates/page.js")
+    reporter.info(`Creating Single: ${path}`)
 
-// exports.createPages = async ({ graphql, actions, reporter }) => {
-//   await createBlogPostPages(graphql, actions, reporter)
-//   // await createWorkPages(graphql, actions, reporter)
-//   // await createPages(graphql, actions, reporter)
-// }
+    createPage({
+      path,
+      component,
+      context,
+    })
+  })
+}
+
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  await createPages(graphql, actions, reporter)
+}

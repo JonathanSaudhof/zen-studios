@@ -4,6 +4,7 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 
 import Layout from "../layouts/layout"
 import SEO from "../components/seo"
+import InstagramPosts from "../components/InstagramPosts"
 
 import styled from "styled-components"
 import { Container, Jumbotron, Row } from "react-bootstrap"
@@ -161,7 +162,8 @@ const MyContainer = styled(Container)`
 `
 
 const StartPageLogo = styled(BrandLogo)`
-  top: ${props => window.innerHeight / 5}px;
+  position: absolute;
+  top: ${props => window.innerHeight / 6}px;
   @media (max-width: ${props => props.theme.mobile}) {
     margin-top: 5px;
     top: ${props => window.innerHeight / 5}px;
@@ -237,7 +239,7 @@ const IndexPage = ({ data }) => {
   })
 
   return (
-    <Layout>
+    <Layout showLogo={true}>
       <SEO title="Home" />
 
       <Canvas className="anim1">
@@ -259,6 +261,7 @@ const IndexPage = ({ data }) => {
         })}
         ‚
       </LandingPageSections>
+      <InstagramPosts />
     </Layout>
   )
 }

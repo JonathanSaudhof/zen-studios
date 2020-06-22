@@ -17,21 +17,15 @@ import { theme } from "./theme"
 import { GlobalStyle } from "./globalstyle"
 
 const Main = styled.main`
-
-  background-image:  url("${props => props.backgroundImage}");
+  min-height: 100vh;
+  background-size:100px;
   background-color: ${props => props.theme.background};
-  background-size: 30px;
-  padding-top:${props => props.theme.headerHeight};
-  background-attachment:fixed;
-  &:before{
-    content: ' ';
-    position: fixed;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100vh;
-    background-image: radial-gradient(circle, rgba(0,0,0,0),rgba(0,0,0,0.8));
-    background-attachment:fixed;
+  background-attachment: fixed;
+  background-image: radial-gradient(
+    farthest-side,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.8)
+  );
   }
   @media (max-width: ${props => props.theme.mobile}){
 
@@ -41,8 +35,19 @@ const Main = styled.main`
   }
 
 `
+const PatternOverlay = styled.div`
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding:${props => props.theme.headerHeight} 0;
+  background-image:  url("${props => props.backgroundImage}");
+  background-size: 30px;
+  background-attachment: fixed;
+  
+`
 
-const Layout = ({ children }) => {
+const Layout = ({ showLogo, showHeader, children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -89,8 +94,16 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
-        <Header siteTitle={data.site.siteMetadata.title} showLogo={true} />
-        <Main backgroundImage={data.backgroundImage.publicURL}>{children}</Main>
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          showHeader={showHeader}
+          showLogo={showLogo}
+        />
+        <Main>
+          <PatternOverlay backgroundImage={data.backgroundImage.publicURL}>
+            {children}
+          </PatternOverlay>
+        </Main>
         <Footer
           navigation={data.footerNav?.items}
           copyright={data.siteSettings?.title}

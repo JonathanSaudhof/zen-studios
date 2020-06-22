@@ -49,12 +49,20 @@ class ContactForm extends Component {
   }
 
   render() {
-    return <div></div>
+    return (
+      <div>
+        <form action=""></form>
+      </div>
+    )
   }
 }
 
 const contactFormPage = props => {
-  return <div>hello</div>
+  return (
+    <div>
+      <ContactForm />
+    </div>
+  )
 }
 
 export default contactFormPage

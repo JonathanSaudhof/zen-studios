@@ -4,9 +4,7 @@ import styled from "styled-components"
 
 export const BrandLogo = props => {
   const Wrapper = styled.div`
-    position: absolute;
     border-radius: 5px;
-
     background-color: ${props => props.theme.primaryDark};
     @keyframes flicker {
       0% {

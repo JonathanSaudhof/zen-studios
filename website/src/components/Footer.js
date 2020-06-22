@@ -11,6 +11,12 @@ const FooterWrapper = styled.footer`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-color: ${props => props.theme.footerColor};
+  background-image: radial-gradient(
+    circle at 50%,
+    rgba(255, 255, 255, 0.05) 10%,
+    rgba(0, 0, 0, 0.5)
+  );
   * {
     color: ${props => props.theme.footerTextColor};
   }

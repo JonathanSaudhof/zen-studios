@@ -5,6 +5,7 @@ export const theme = {
   background: "#1E442F",
   headerColor: "#1B2916",
   headerHeight: "60px",
+  footerColor: "#1B2916",
   footerTextColor: "#C8C8C8",
   mobile: "768px",
   mobileMenuBackground: "#1B2916",
