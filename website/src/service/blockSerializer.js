@@ -8,7 +8,11 @@ const ImageContainer = styled.div`
   max-width: 50%;
   margin-right: ${props => (props.position === "right" ? "0px" : "25px")};
   margin-left: ${props => (props.position === "left" ? "0px" : "25px")};
+  ${props => (props.position === "center" ? "margin: 0 auto;" : "")}
   float: ${props => (props.position === "center" ? "unset" : props.position)};
+  img {
+    max-width: 100%;
+  }
 `
 
 const ButtonContainer = styled.div`
@@ -40,7 +44,7 @@ const ButtonContainer = styled.div`
 `
 
 const ImageComponent = ({ node }) => {
-  // console.log("NODE", node.caption)
+  console.log("NODE", node.caption)
 
   return (
     <ImageContainer position={node.position}>

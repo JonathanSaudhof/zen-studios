@@ -6,7 +6,7 @@ html, body {
     padding: 0;
     font-family: "Source Sans Pro";
     background-color: ${props => props.theme.background};
-    
+    position: relative;
   }
   *, *::after, *::before {
     box-sizing: border-box;

@@ -4,6 +4,7 @@ import ScrollTrigger from "gsap/ScrollTrigger"
 
 import Layout from "../layouts/layout"
 import SEO from "../components/seo"
+import InstagramPosts from "../components/InstagramPosts"
 
 import styled from "styled-components"
 import { Container, Jumbotron, Row } from "react-bootstrap"
@@ -161,10 +162,11 @@ const MyContainer = styled(Container)`
 `
 
 const StartPageLogo = styled(BrandLogo)`
-  top: ${props => window.innerHeight / 5}px;
+  position: absolute;
+  top: ${props => props.height / 5}px;
   @media (max-width: ${props => props.theme.mobile}) {
     margin-top: 5px;
-    top: ${props => window.innerHeight / 5}px;
+    top: ${props => props.height / 6}px;
     svg {
       width: 150px;
     }
@@ -196,9 +198,11 @@ const ArticleBlock = props => {
 const IndexPage = ({ data }) => {
   const landingPageSection = getNodesFromQuery(data.landingPageSection)
   // console.log(getNodesFromQuery(data?.localImage))
-
+  let [windowHeight, setWindowHeight] = useState(null)
   useEffect(() => {
     // Update the document title using the browser API
+    setWindowHeight(window.innerHeight)
+    console.log("WindowHeight", windowHeight)
     gsap.registerPlugin(ScrollTrigger)
 
     const tl0 = gsap.timeline()
@@ -237,11 +241,11 @@ const IndexPage = ({ data }) => {
   })
 
   return (
-    <Layout>
+    <Layout showLogo={true}>
       <SEO title="Home" />
 
       <Canvas className="anim1">
-        <StartPageLogo className="box" width="300" />
+        <StartPageLogo className="box" width="300" height={windowHeight} />
         <Palms>
           <LeftPalms className="palms left-palms">
             <Palm transform="scale(1,1)" />
@@ -259,6 +263,7 @@ const IndexPage = ({ data }) => {
         })}
         ‚
       </LandingPageSections>
+      <InstagramPosts />
     </Layout>
   )
 }

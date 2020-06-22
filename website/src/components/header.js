@@ -1,6 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 import styled from "styled-components"
+import { Link } from "gatsby"
 
 import { Container, Row, Col } from "react-bootstrap"
 import { Navigation, NavLink } from "./Navigation"
@@ -20,27 +21,35 @@ const MyHeader = styled.header`
   width: 100%;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
   z-index: 99;
-  opacity: 0;
+  opacity: ${props => (props.showHeader ? 1 : 0)};
   position: fixed;
 `
 const HeaderLogo = styled(BrandLogo)`
   margin-top: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+
   @media (max-width: ${props => props.theme.mobile}) {
     svg {
       width: 100px;
     }
   }
 `
-const Header = ({ siteTitle, showLogo, logoUrl }) => {
+const Header = ({ showLogo, showHeader }) => {
   // TODO: make it dynamic!
-  console.log("ShowLogo", showLogo)
+  console.log("showLogo", showLogo)
   return (
-    <MyHeader>
+    <MyHeader showHeader={showHeader}>
       <Container>
         <Row className="justify-content-between">
           <Col></Col>
           <Col className="d-flex justify-content-center">
-            {showLogo ? <HeaderLogo width="150" className="headerLogo" /> : ""}
+            {showLogo ? (
+              <Link to="/">
+                <HeaderLogo width="150" className="headerLogo" />
+              </Link>
+            ) : (
+              ""
+            )}
           </Col>
           <Col className="d-flex justify-content-end">
             <Navigation></Navigation>
