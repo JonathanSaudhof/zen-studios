@@ -58,7 +58,7 @@ html, body {
     font-style: normal;
     font-weight: 300;
     font-size: 18px;
-    line-height: 23px;
+    line-height: 1.5em;
     text-decoration: none;
     color: ${({ theme }) => theme.linkColor};
     &:hover{

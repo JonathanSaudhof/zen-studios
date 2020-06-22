@@ -25,8 +25,14 @@ const FooterWrapper = styled.footer`
 `
 const FooterContainer = styled(Container)`
   display: flex;
+  z-index: 99;
+  a {
+    margin: 0 0.5rem;
+  
+  }
   @media (max-width: ${props => props.theme.mobile}) {
     flex-direction: column;
+    margin-bottom: 0.5rem
     align-items: center;
   }
 `
@@ -51,7 +57,8 @@ const Footer = ({ navigation, socialMedia, copyright, children }) => {
         {navigation ? <FooterNavigation items={navigation} /> : ""}
 
         <p>
-          Copyright {new Date().getFullYear()} © {copyright}
+          {" "}
+          | Copyright {new Date().getFullYear()} © {copyright}
         </p>
       </FooterContainer>
     </FooterWrapper>
