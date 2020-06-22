@@ -7,7 +7,7 @@ import { Container, Row, Col } from "react-bootstrap"
 import SocialMediaIcons from "../components/SocialMediaIcons"
 
 const FooterWrapper = styled.footer`
-  height: 80px;
+  min-height: 80px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -34,11 +34,10 @@ const FooterContainer = styled(Container)`
   z-index: 99;
   a {
     margin: 0 0.5rem;
-  
   }
   @media (max-width: ${props => props.theme.mobile}) {
     flex-direction: column;
-    margin-bottom: 0.5rem
+    margin-bottom: 0.5rem;
     align-items: center;
   }
 `
