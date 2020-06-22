@@ -11,7 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled, { ThemeProvider } from "styled-components"
 
 import Header from "../components/header"
-import Footer from "../components/footer"
+import Footer from "../components/Footer"
 
 import { theme } from "./theme"
 import { GlobalStyle } from "./globalstyle"
