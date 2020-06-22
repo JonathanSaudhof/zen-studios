@@ -7,6 +7,10 @@ import { Container } from "react-bootstrap"
 const PostContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
+  @media (max-width: ${props => props.theme.mobile}) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 const InstagramPosts = props => {

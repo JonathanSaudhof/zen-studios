@@ -163,10 +163,10 @@ const MyContainer = styled(Container)`
 
 const StartPageLogo = styled(BrandLogo)`
   position: absolute;
-  top: ${props => props.height}px;
+  top: ${props => props.height / 5}px;
   @media (max-width: ${props => props.theme.mobile}) {
     margin-top: 5px;
-    top: ${props => props.height}px;
+    top: ${props => props.height / 6}px;
     svg {
       width: 150px;
     }
@@ -202,6 +202,7 @@ const IndexPage = ({ data }) => {
   useEffect(() => {
     // Update the document title using the browser API
     setWindowHeight(window.innerHeight)
+    console.log("WindowHeight", windowHeight)
     gsap.registerPlugin(ScrollTrigger)
 
     const tl0 = gsap.timeline()
