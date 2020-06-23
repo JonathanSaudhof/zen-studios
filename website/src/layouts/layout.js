@@ -73,6 +73,21 @@ const Layout = ({ showLogo, showHeader, children }) => {
         title
       }
 
+      hearderNav: sanityNavigation(name: { eq: "primary" }) {
+        id
+        items {
+          title
+          redirect
+          type
+          slug {
+            current
+            _type
+            _key
+          }
+          id
+        }
+      }
+
       footerNav: sanityNavigation(name: { eq: "secondary" }) {
         id
         items {

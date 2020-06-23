@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 import InstagramPosts from "../components/InstagramPosts"
 
 import styled from "styled-components"
-import { Container, Jumbotron, Row } from "react-bootstrap"
+import { Container, Row } from "react-bootstrap"
 
 import { getNodesFromQuery } from "../service/helper"
 
@@ -59,13 +59,6 @@ export const query = graphql`
       }
     }
   }
-`
-const Hero = styled(Jumbotron)`
-  background-color: ${props => props.inputColor || "palevioletred"};
-  min-height: 100vh;
-`
-const Content = styled.section`
-  background-color: red;
 `
 
 const Canvas = styled.section`
@@ -143,8 +136,6 @@ const ContentWrapper = styled.div`
   h1 {
     color: #fafafa;
     text-align: left;
-    ${"" /* display: flex;
-    justify-content: center; */}
     padding-bottom: 5%;
     padding-left: 50px;
   }
@@ -178,6 +169,7 @@ const ArticleBlock = props => {
     <>
       <ContentWrapper
         imageUrl={imageUrlFor(props.image).width(960).blur(30).url()}
+        id={props.title}
       >
         <Container>
           <Row>
@@ -198,8 +190,6 @@ const ArticleBlock = props => {
 const IndexPage = ({ data }) => {
   const landingPageSection = getNodesFromQuery(data.landingPageSection)
   useEffect(() => {
-    // Update the document title using the browser API
-
     gsap.registerPlugin(ScrollTrigger)
 
     const tl0 = gsap.timeline()
@@ -234,11 +224,11 @@ const IndexPage = ({ data }) => {
         "-=4"
       )
       .to(".box", { duration: 4, scale: 1, ease: "none" })
-      .to("header", { opacity: 1, duration: 2 }, "+=1")
+      .to(".headerLogo", { opacity: 1, duration: 2 }, "+=1")
   })
 
   return (
-    <Layout showLogo={true}>
+    <Layout showLogo={false} showHeader>
       <SEO title="Home" />
 
       <Canvas className="anim1">
