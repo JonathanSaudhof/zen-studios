@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 import { Container } from "react-bootstrap"
+import Layout from "../layouts/layout"
 
 import { Link } from "gatsby"
 import axios from "axios"
@@ -282,9 +283,9 @@ const MyFormContainer = styled(Container)`
 const contactFormPage = props => {
   console.log("test")
   return (
-    <div>
+    <Layout>
       <ContactForm></ContactForm>
-    </div>
+    </Layout>
   )
 }
 
