@@ -163,10 +163,10 @@ const MyContainer = styled(Container)`
 
 const StartPageLogo = styled(BrandLogo)`
   position: absolute;
-  top: ${props => props.height / 5}px;
+  top: 20%;
   @media (max-width: ${props => props.theme.mobile}) {
     margin-top: 5px;
-    top: ${props => props.height / 6}px;
+    top: 12.5%;
     svg {
       width: 150px;
     }
