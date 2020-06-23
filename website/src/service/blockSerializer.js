@@ -13,6 +13,7 @@ const ImageContainer = styled.div`
   img {
     max-width: 100%;
   }
+  @media (max-width: $)
 `
 
 const ButtonContainer = styled.div`

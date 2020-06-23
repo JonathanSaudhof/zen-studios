@@ -42,7 +42,12 @@ export const BrandLogo = props => {
   `
   return (
     <Wrapper className={props.className}>
-      <Logo width={props.width} height="auto" viewBox="0 0 105 85" />
+      <Logo
+        width={props.width}
+        height="auto"
+        viewBox="0 0 105 85"
+        style={{ zIndex: 2 }}
+      />
     </Wrapper>
   )
 }

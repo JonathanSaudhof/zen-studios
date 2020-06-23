@@ -197,12 +197,9 @@ const ArticleBlock = props => {
 
 const IndexPage = ({ data }) => {
   const landingPageSection = getNodesFromQuery(data.landingPageSection)
-  // console.log(getNodesFromQuery(data?.localImage))
-  let [windowHeight, setWindowHeight] = useState(null)
   useEffect(() => {
     // Update the document title using the browser API
-    setWindowHeight(window.innerHeight)
-    console.log("WindowHeight", windowHeight)
+
     gsap.registerPlugin(ScrollTrigger)
 
     const tl0 = gsap.timeline()
@@ -245,7 +242,7 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
 
       <Canvas className="anim1">
-        <StartPageLogo className="box" width="300" height={windowHeight} />
+        <StartPageLogo className="box" width="300" />
         <Palms>
           <LeftPalms className="palms left-palms">
             <Palm transform="scale(1,1)" />
