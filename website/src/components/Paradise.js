@@ -1,11 +1,11 @@
 import React from "react"
-import Logo from "../assets/logo.svg"
+import Logo from "../assets/welcome.svg"
 import styled from "styled-components"
 
-export const BrandLogo = props => {
+const Paradise = props => {
   const Wrapper = styled.div`
-    border-radius: 5px;
-    background-color: ${props => props.theme.primaryDark};
+    display: flex;
+    margin: auto;
     @keyframes flicker {
       0% {
         opacity: 1;
@@ -32,22 +32,15 @@ export const BrandLogo = props => {
         opacity: 1;
       }
     }
-    #Zen,
-    #Rahmen {
-      animation: flicker 3s infinite 2s step-end;
-    }
-    #Studios {
-      animation: flicker 4s infinite 1s step-end;
+
+    #to {
+      animation: flicker 10s infinite 1s step-end;
     }
   `
   return (
     <Wrapper className={props.className}>
-      <Logo
-        width={props.width}
-        height="auto"
-        viewBox="0 0 105 85"
-        style={{ zIndex: 2 }}
-      />
+      <Logo width={props.width} height="auto" style={{ zIndex: 2 }} />
     </Wrapper>
   )
 }
+export default Paradise

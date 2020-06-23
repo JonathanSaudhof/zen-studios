@@ -27,32 +27,33 @@ const MyHeader = styled.header`
 const HeaderLogo = styled(BrandLogo)`
   margin-top: 5px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-
+  opacity: ${props => props.opacity};
   @media (max-width: ${props => props.theme.mobile}) {
     svg {
       width: 100px;
     }
   }
 `
-const Header = ({ showLogo, showHeader }) => {
+const Header = ({ showLogo, showHeader, navigation }) => {
   // TODO: make it dynamic!
-  console.log("showLogo", showLogo)
+  // console.log("showLogo", showLogo)
+  console.log("navigation", navigation)
   return (
     <MyHeader showHeader={showHeader}>
       <Container>
         <Row className="justify-content-between">
           <Col></Col>
           <Col className="d-flex justify-content-center">
-            {showLogo ? (
-              <Link to="/">
-                <HeaderLogo width="150" className="headerLogo" />
-              </Link>
-            ) : (
-              ""
-            )}
+            <Link to="/">
+              <HeaderLogo
+                opacity={showLogo ? 1 : 0}
+                width="150"
+                className="headerLogo"
+              />
+            </Link>
           </Col>
           <Col className="d-flex justify-content-end">
-            <Navigation></Navigation>
+            <Navigation navigation={navigation} />
           </Col>
         </Row>
       </Container>
