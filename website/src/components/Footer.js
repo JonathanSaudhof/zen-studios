@@ -31,7 +31,7 @@ const FooterWrapper = styled.footer`
 `
 const FooterContainer = styled(Container)`
   display: flex;
-  z-index: 99;
+  z-index: 2;
   a {
     margin: 0 0.5rem;
   }

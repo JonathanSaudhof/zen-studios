@@ -7,15 +7,15 @@ import SEO from "../components/seo"
 import InstagramPosts from "../components/InstagramPosts"
 
 import styled from "styled-components"
-import { Container, Row } from "react-bootstrap"
 
 import { getNodesFromQuery } from "../service/helper"
 
 import { BrandLogo } from "../components/BrandLogo"
+import ArticleBlock from "../components/ArticleBlock"
+import Paradise from "../components/Paradise"
 import Palm from "../assets/palme-1.svg"
-import BlockContent from "@sanity/block-content-to-react"
-import blockSerializer from "../service/blockSerializer"
-import { imageUrlFor } from "../service/helper"
+import GummiL from "../assets/gummi-baum-left.svg"
+import GummiR from "../assets/gummi-baum-right.svg"
 
 export const query = graphql`
   fragment getImage on SanityImage {
@@ -107,6 +107,7 @@ const Palms = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+  z-index: 2;
   div {
     overflow:hidden
   }
@@ -120,41 +121,37 @@ const Palms = styled.div`
       
     }
     :nth-child(2) {
-      fill: ${({ theme }) => theme.primaryLight};
+      fill: #395231;
     }
   }s
 `
-const ContentWrapper = styled.div`
-  width: 100%;
-  padding-top: 10%;
-  padding-bottom: 5%;
-  margin-bottom: 5%;
-  background-image: url('${props => props.imageUrl}');
-  background-size: cover;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  h1 {
-    color: #fafafa;
-    text-align: left;
-    padding-bottom: 5%;
-    padding-left: 50px;
-  }
-`
 
-const MyContainer = styled(Container)`
-  height: 100%;
-  padding: 50px;
-  background-color: rgba(238, 238, 238, 0.8);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-  img {
-    width: 100%;
-  }
+const GummiLeft = styled(GummiL)`
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  height: auto;
+  width: 50%;
+`
+const GummiRight = styled(GummiR)`
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  height: auto;
+  width: 50%;
+`
+const LogoContainer = styled.div`
+  height: auto;
+  width: 300px;
+  position: absolute;
+  top: 40%;
+  display: flex;
+  flex-direction: column;
 `
 
 const StartPageLogo = styled(BrandLogo)`
-  position: absolute;
-  top: 20%;
+  transform-origin: center center;
+  z-index: 1;
   @media (max-width: ${props => props.theme.mobile}) {
     margin-top: 5px;
     top: 12.5%;
@@ -163,67 +160,64 @@ const StartPageLogo = styled(BrandLogo)`
     }
   }
 `
-
-const ArticleBlock = props => {
-  return (
-    <>
-      <ContentWrapper
-        imageUrl={imageUrlFor(props.image).width(960).blur(30).url()}
-        id={props.title}
-      >
-        <Container>
-          <Row>
-            <h1>{props.title}</h1>
-          </Row>
-        </Container>
-        <MyContainer>
-          <BlockContent
-            blocks={props._rawContent}
-            serializers={blockSerializer}
-          />
-        </MyContainer>
-      </ContentWrapper>
-    </>
-  )
-}
+const StartPageWelcome = styled(Paradise)`
+  position: absolute;
+  margin: auto;
+`
 
 const IndexPage = ({ data }) => {
   const landingPageSection = getNodesFromQuery(data.landingPageSection)
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    const tl0 = gsap.timeline()
-
     const tl1 = gsap.timeline({
       scrollTrigger: {
-        trigger: "Body",
+        trigger: "body",
         start: "60",
         end: "500",
         scrub: 1,
       },
     })
+
     tl1
-      .to(
-        ".left-palms",
-        {
-          duration: 4,
-          x: () => -(window.innerWidth / 2),
-          rotation: 45,
-          transformOrigin: "0% 0%",
-        },
-        "-=4"
-      )
+      .to(".left-palms", {
+        duration: 1,
+        x: () => -(window.innerWidth / 2),
+        rotation: 45,
+        transformOrigin: "0% 0%",
+      })
       .to(
         ".right-palms",
         {
-          duration: 4,
+          duration: 1,
           x: () => window.innerWidth / 2,
           rotation: -45,
           transformOrigin: "100% 0%",
         },
-        "-=4"
+        "-=1"
       )
-      .to(".box", { duration: 4, scale: 1, ease: "none" })
+      .to(
+        "#gummi-left",
+        {
+          duration: 1,
+          scale: 2,
+          rotation: -40,
+          transformOrigin: "100% 50%",
+          ease: "none",
+        },
+        "-=1"
+      )
+      .to(
+        "#gummi-right",
+        {
+          duration: 1,
+          scale: 2,
+          rotation: 40,
+          transformOrigin: "0% 50%",
+          ease: "none",
+        },
+        "-=1"
+      )
       .to(".headerLogo", { opacity: 1, duration: 2 }, "+=1")
   })
 
@@ -232,12 +226,17 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
 
       <Canvas className="anim1">
-        <StartPageLogo className="box" width="300" />
+        <LogoContainer>
+          <StartPageLogo className="box" width="100%" />
+          <GummiLeft width="100" height="auto" id="gummi-left" />
+          <GummiRight width="100" height="auto" id="gummi-right" />
+        </LogoContainer>
         <Palms>
           <LeftPalms className="palms left-palms">
             <Palm transform="scale(1,1)" />
             <Palm transform="scale(1,1)" />
           </LeftPalms>
+
           <RightPalms className="palms right-palms">
             <Palm transform="scale(-1,1)" />
             <Palm transform="scale(-1,1)" />
@@ -250,7 +249,7 @@ const IndexPage = ({ data }) => {
         })}
         ‚
       </LandingPageSections>
-      <InstagramPosts />
+      <InstagramPosts profile="zen_studios_berlin" />
     </Layout>
   )
 }

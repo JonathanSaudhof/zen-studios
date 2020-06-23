@@ -34,9 +34,10 @@ const HeaderLogo = styled(BrandLogo)`
     }
   }
 `
-const Header = ({ showLogo, showHeader }) => {
+const Header = ({ showLogo, showHeader, navigation }) => {
   // TODO: make it dynamic!
-  console.log("showLogo", showLogo)
+  // console.log("showLogo", showLogo)
+  console.log("navigation", navigation)
   return (
     <MyHeader showHeader={showHeader}>
       <Container>
@@ -52,7 +53,7 @@ const Header = ({ showLogo, showHeader }) => {
             </Link>
           </Col>
           <Col className="d-flex justify-content-end">
-            <Navigation></Navigation>
+            <Navigation navigation={navigation} />
           </Col>
         </Row>
       </Container>

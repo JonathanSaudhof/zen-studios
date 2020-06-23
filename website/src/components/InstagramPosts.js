@@ -16,7 +16,7 @@ const PostContainer = styled(Container)`
 const InstagramPosts = props => {
   let [posts, setPosts] = useState(null)
   useEffect(() => {
-    userInstagram("josch_und_loui")
+    userInstagram(props.profile)
       .then(user => user.posts.map(element => element.url))
       .then(postings => {
         setPosts(postings.map(postUrl => postUrl))

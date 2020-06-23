@@ -4,11 +4,11 @@ import { Link } from "gatsby"
 //import { theme } from "../layouts/theme"
 
 import { MdHome } from "react-icons/md"
+import Menu from "../assets/menu.svg"
 
 export const Navbar = styled.nav`
   display: flex;
   justify-content: flex-end;
-  height: 100%;
   position: fixed;
   overflow: scroll;
   justify-content: flex-start;
@@ -38,15 +38,12 @@ export const Navbar = styled.nav`
   }
 `
 export const Nav = styled.ul`
-  // display: flex;
-  // padding: 0;
-  // margin: 0;
-  // list-style: none;
-  // height: auto;
+  display: flex;
 
   position: absolute;
   left: 0;
   flex-direction: column;
+  align-items: center;
   background-color: ${({ theme }) => theme.mobileMenuBackground};
   width: 33%;
   min-height: 100%;
@@ -65,10 +62,12 @@ export const Nav = styled.ul`
   }
 `
 const ListItem = styled.li`
-  width: 120px;
+  width: 100%;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
+
   font-weight: 400;
   &:hover {
     background-color: ${({ theme }) => theme.lightBrown};
@@ -77,6 +76,7 @@ const ListItem = styled.li`
   &.active {
     border-bottom: 3px solid ${({ theme }) => theme.linkActive};
   }
+
   @media (max-width: ${({ theme }) => theme.mobile}) {
     color: white;
     width: 100%;
@@ -94,6 +94,7 @@ const ListItem = styled.li`
 const LinkItem = styled(Link)`
   display: flex;
   padding: 0.5em;
+  font-size: 24px;
   vertical-align: center;
   color: ${({ theme }) => theme.linkColor};
   &:hover {
@@ -182,14 +183,26 @@ const NavbarToggle = ({ open, onClick }) => {
 
 export const NavLink = props => {
   return (
-    <ListItem>
+    <ListItem style={props.style}>
       <LinkItem to={props.to}>{props.children}</LinkItem>
     </ListItem>
   )
 }
 
-export const Navigation = ({ children }) => {
+const FirstRow = styled.div`
+  display: flex;
+  width: 100%;
+  height: 60px;
+  margin-bottom: 10px;
+  background-color: ${props => props.theme.primaryDark};
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+  border-bottom: 3px solid black;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`
+
+export const Navigation = ({ children, navigation }) => {
   const [menuOpen, setMenuOpen] = useState(false)
+  console.log("navigation", navigation)
   return (
     <>
       <NavbarToggle
@@ -205,10 +218,17 @@ export const Navigation = ({ children }) => {
         }}
       >
         <Nav open={menuOpen}>
-          <NavLink to="/">
-            <MdHome />
-          </NavLink>
-          {children}
+          <FirstRow>
+            <NavLink to="/" style={{ flexBasis: "25%" }}>
+              <MdHome />
+            </NavLink>
+            <Menu style={{ flexBasis: "75%", height: "auto" }} />
+          </FirstRow>
+          {navigation?.map(element => (
+            <NavLink key={element.id} to={`/${element.slug.current}`}>
+              {element.title}
+            </NavLink>
+          ))}
         </Nav>
       </Navbar>
     </>

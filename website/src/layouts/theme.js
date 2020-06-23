@@ -8,9 +8,11 @@ export const theme = {
   footerColor: "#1B2916",
   footerTextColor: "#C8C8C8",
   mobile: "768px",
-  mobileMenuBackground: "#1B2916",
+  mobileMenuBackground: "#395231",
+  mobileMenuTransition: "all 0.3s linear;",
   toggleCloseColor: "#3EDCFF",
   toggleOpenColor: "#3EDCFF",
   blockCTA: "#0AD2FF",
   blockCTAHover: "#E98120",
+  linkColor: "#3EDCFF",
 }

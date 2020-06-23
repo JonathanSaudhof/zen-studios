@@ -73,16 +73,13 @@ const Layout = ({ showLogo, showHeader, children }) => {
         title
       }
 
-      hearderNav: sanityNavigation(name: { eq: "primary" }) {
+      headerNav: sanityNavigation(name: { eq: "primary" }) {
         id
         items {
           title
           redirect
-          type
           slug {
             current
-            _type
-            _key
           }
           id
         }
@@ -104,7 +101,8 @@ const Layout = ({ showLogo, showHeader, children }) => {
       }
     }
   `)
-
+  // console.log("data", data.siteSettings.socialMedia)
+  console.log("navigation layout", data)
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -113,6 +111,7 @@ const Layout = ({ showLogo, showHeader, children }) => {
           siteTitle={data.site.siteMetadata.title}
           showHeader={showHeader}
           showLogo={showLogo}
+          navigation={data.headerNav?.items}
         />
         <Main>
           <PatternOverlay backgroundImage={data.backgroundImage.publicURL}>
