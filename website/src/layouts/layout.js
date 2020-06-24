@@ -121,7 +121,7 @@ const Layout = ({ showLogo, showHeader, children }) => {
         <Footer
           navigation={data.footerNav?.items}
           copyright={data.siteSettings?.title}
-          socialMedia={data.siteSettings.socialMedia}
+          socialMedia={data.siteSettings?.socialMedia}
         />
       </>
     </ThemeProvider>
