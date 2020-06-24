@@ -21,27 +21,38 @@ const Canvas = styled.section`
 const LeftPalms = styled.div`
   position: relative;
   top: 0;
-  left: 0;
+  left: -7%;
   width: 60%;
   height: 100%;
 
   svg {
     top: 0;
     right: 0;
+    transform: scale(1.5, 1.5);
+  }
+  @media (max-width: ${props => props.theme.mobile}) {
+    svg {
+      transform: scale(1.2, 1.2);
+    }
   }
 `
 
 const RightPalms = styled.div`
   position: relative;
   top: 0;
-  right: 0;
+  right: -7%;
   width: 60%;
   height: 100%;
 
   svg {
     top: 0;
     left: 0;
-    transform: scale(-1, 1);
+    transform: scale(-1.5, 1.5);
+  }
+  @media (max-width: ${props => props.theme.mobile}) {
+    svg {
+      transform: scale(-1.2, 1.2);
+    }
   }
 `
 const Palms = styled.div`
@@ -51,7 +62,7 @@ const Palms = styled.div`
   height: 100%;
   z-index: 2;
   div {
-    overflow:hidden
+    
   }
   svg {
     height: 100%;
@@ -84,9 +95,9 @@ const GummiRight = styled(GummiR)`
 `
 const LogoContainer = styled.div`
   height: auto;
-  width: 15%;
+  width: 25%;
   position: absolute;
-  top: 40%;
+  top: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
