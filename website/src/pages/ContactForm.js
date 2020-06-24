@@ -76,8 +76,9 @@ class ContactForm extends Component {
           method="POST"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
-          // onSubmit={this.handleSubmit}
+          onSubmit={this.handleSubmit}
         >
+          <input type="hidden" name="form-name" value="contact" />
           <label htmlFor="contactReason">
             <select
               className="dropdown"
@@ -270,7 +271,11 @@ class ContactForm extends Component {
             </p>
 
             <span className="mandatory-info">* Pflichtfeld</span>
-            <button className="btn btn-primary" type="submit">
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={this.handleSubmit}
+            >
               Senden
             </button>
           </div>
