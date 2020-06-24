@@ -48,24 +48,24 @@ class ContactForm extends Component {
   }
 
   handleSubmit = event => {
-    event.preventDefault()
-    console.log("Submit clicked")
-    console.log("STATE:", this.state)
-    axios.post("/contactform", {
-      contactReason: this.state.contactReason, //
-      name: this.state.name, //
-      email: this.state.email, //
-      phone: this.state.phone, //
-      message: this.state.message, //
-      instrument: this.state.instrument, //
-      nrOfBandMembers: this.state.nrOfBandMembers, //
-      nrOfPracticeDaysPerWeek: this.state.nrOfPracticeDaysPerWeek, //
-      musicalStyle: this.state.musicalStyle, //
-      recording: this.state.recording, //
-      mixing: this.state.mixing, //
-      videoShoot: this.state.videoShoot, //
-      privacy: this.state.privacy, //
-    })
+    // event.preventDefault()
+    // console.log("Submit clicked")
+    // console.log("STATE:", this.state)
+    // axios.post("/contactform", {
+    //   contactReason: this.state.contactReason, //
+    //   name: this.state.name, //
+    //   email: this.state.email, //
+    //   phone: this.state.phone, //
+    //   message: this.state.message, //
+    //   instrument: this.state.instrument, //
+    //   nrOfBandMembers: this.state.nrOfBandMembers, //
+    //   nrOfPracticeDaysPerWeek: this.state.nrOfPracticeDaysPerWeek, //
+    //   musicalStyle: this.state.musicalStyle, //
+    //   recording: this.state.recording, //
+    //   mixing: this.state.mixing, //
+    //   videoShoot: this.state.videoShoot, //
+    //   privacy: this.state.privacy, //
+    // })
   }
 
   render() {
@@ -76,7 +76,7 @@ class ContactForm extends Component {
           method="POST"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
-          onSubmit={this.handleSubmit}
+          // onSubmit={this.handleSubmit}
         >
           <input type="hidden" name="form-name" value="contact" />
           <label htmlFor="contactReason">
