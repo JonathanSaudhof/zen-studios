@@ -26,7 +26,7 @@ const page = ({ data, errors }) => {
         <Row>
           <Col>
             <BlockContent
-              blocks={data.site._rawBody}
+              blocks={data?.site?._rawBody}
               serializers={blockSerializer}
             />
           </Col>
