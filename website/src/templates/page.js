@@ -21,7 +21,7 @@ const PageContainer = styled(Container)`
 const page = ({ data, errors }) => {
   return (
     <Layout showHeader={true} showLogo={true}>
-      <SEO title={data.site.title} />
+      <SEO title={data?.site?.title} />
       <PageContainer>
         <Row>
           <Col>
