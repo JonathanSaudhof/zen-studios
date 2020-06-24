@@ -10,7 +10,6 @@ class ContactForm extends Component {
   state = {
     contactReason: "",
     name: "",
-    firstName: "",
     email: "",
     phone: "",
     message: "",
@@ -21,6 +20,7 @@ class ContactForm extends Component {
     recording: "",
     mixing: "",
     videoShoot: "",
+    privacy: "",
   }
 
   handleChange = event => {
@@ -50,11 +50,10 @@ class ContactForm extends Component {
   handleSubmit = event => {
     event.preventDefault()
     console.log("Submit clicked")
-    console.log(event)
-    axios.post("https://", {
+    console.log("STATE:", this.state)
+    axios.post("/contactform", {
       contactReason: this.state.contactReason, //
       name: this.state.name, //
-      firstName: this.state.firstName, //
       email: this.state.email, //
       phone: this.state.phone, //
       message: this.state.message, //
@@ -65,6 +64,7 @@ class ContactForm extends Component {
       recording: this.state.recording, //
       mixing: this.state.mixing, //
       videoShoot: this.state.videoShoot, //
+      privacy: this.state.privacy, //
     })
   }
 
@@ -72,10 +72,13 @@ class ContactForm extends Component {
     return (
       <MyFormContainer>
         <form
-          method="post"
-          action="https://formspree.io/slady@zenstudios.de "
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
           onSubmit={this.handleSubmit}
         >
+          <input type="hidden" name="form-name" value="contact" />
           <label htmlFor="contactReason">
             <select
               className="dropdown"
@@ -85,7 +88,7 @@ class ContactForm extends Component {
               id="contact_reason"
             >
               <option value="" selected>
-                Kontaktgrund
+                Kontaktgrund wählen
               </option>
               <option value="music_lesson">Musikunterricht</option>
               <option value="rehearsal_room">Proberaum</option>
@@ -101,11 +104,11 @@ class ContactForm extends Component {
               id="name"
               value={this.state.name}
               onChange={this.handleChange}
-              placeholder="Name*"
+              placeholder="Vor- und Nachname*"
               required
             />
           </label>
-          <label htmlFor="first_name">
+          {/* <label htmlFor="first_name">
             <input
               className="input"
               type="text"
@@ -116,12 +119,12 @@ class ContactForm extends Component {
               placeholder="Vorname*"
               required
             />
-          </label>
+          </label> */}
           <label htmlFor="email">
             <input
               className="input"
               type="email"
-              name="_replyto"
+              name="email"
               id="email"
               value={this.state.email}
               onChange={this.handleChange}
@@ -147,20 +150,26 @@ class ContactForm extends Component {
               rows="5"
               value={this.state.message}
               onChange={this.handleChange}
-              placeholder="Nachricht*"
-              required
+              placeholder="Nachricht"
             />
           </label>
           <label htmlFor="instrument">
-            <input
-              className="input"
-              type="text"
+            <select
+              className="dropdown"
               name="instrument"
               id="instrument"
               value={this.state.instrument}
               onChange={this.handleChange}
-              placeholder="Instrument"
-            />
+            >
+              <option value="" selected>
+                Instrument wählen
+              </option>
+              <option value="drums">Schlagzeug</option>
+              <option value="bass">Bass</option>
+              <option value="guitar">Gitarre</option>
+              <option value="keyboard">Keyboard</option>
+              <option value="production">Audioproduktion</option>
+            </select>
           </label>
           <label htmlFor="band_members">
             <select
@@ -171,7 +180,7 @@ class ContactForm extends Component {
               onChange={this.handleChange}
             >
               <option value="" selected>
-                Anzahl Bandmitglieder
+                Anzahl Bandmitglieder wählen
               </option>
               <option value="1-3">1-3</option>
               <option value="4-6">4-6</option>
@@ -187,7 +196,7 @@ class ContactForm extends Component {
               onChange={this.handleChange}
             >
               <option value="" selected>
-                Probentage/Woche
+                Probentage/Woche wählen
               </option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -243,8 +252,30 @@ class ContactForm extends Component {
               <label htmlFor="videoshoot">Videodreh</label>
             </p>
 
+            <p>
+              <input
+                type="checkbox"
+                id="privacy"
+                name="privacy"
+                checked={this.state.privacy}
+                onChange={this.handleCheckboxChange}
+                required
+              />
+              <label htmlFor="privacy">
+                Ich habe die{" "}
+                <span>
+                  <a>Datenschutzhinweise</a>
+                </span>{" "}
+                gem. Art. 13 DSGVO gelesen.*
+              </label>
+            </p>
+
             <span className="mandatory-info">* Pflichtfeld</span>
-            <button className="btn btn-primary" type="submit">
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={this.handleSubmit}
+            >
               Senden
             </button>
           </div>
@@ -281,6 +312,7 @@ const MyFormContainer = styled(Container)`
     width: 100%;
     height: 200px;
     padding-left: 10px;
+    padding-top: 10px;
     border: 1px solid #888888;
     border-radius: 3px;
     box-sizing: border-box;
@@ -394,6 +426,7 @@ const MyFormContainer = styled(Container)`
   .mandatory-info {
     width: 100%;
     height: 40px;
+    margin-top: 20px;
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: normal;
