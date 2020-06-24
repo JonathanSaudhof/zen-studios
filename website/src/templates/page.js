@@ -17,6 +17,16 @@ const PageContainer = styled(Container)`
   margin: 80px auto;
   z-index: 1;
 `
+export const data = graphql`
+  query PageTemplateQuery($id: String!) {
+    site: sanityPage(id: { eq: $id }) {
+      id
+      title
+      type
+      _rawBody
+    }
+  }
+`
 
 const page = ({ data, errors }) => {
   return (
