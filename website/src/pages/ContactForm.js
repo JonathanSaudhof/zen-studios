@@ -72,11 +72,11 @@ class ContactForm extends Component {
     return (
       <MyFormContainer>
         <form
-          name="contact-form"
+          name="contact"
           method="POST"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
-          onSubmit={this.handleSubmit}
+          // onSubmit={this.handleSubmit}
         >
           <label htmlFor="contactReason">
             <select
