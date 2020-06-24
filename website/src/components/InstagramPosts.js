@@ -31,6 +31,7 @@ const InstagramPosts = props => {
         }
         return (
           <InstagramEmbed
+            key={index}
             url={url}
             maxWidth={320}
             hideCaption={true}

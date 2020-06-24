@@ -48,7 +48,9 @@ const FooterNavigation = ({ items }) => {
   }
 
   return items.map(element => (
-    <Link to={element.slug.current}>{element.title}</Link>
+    <Link key={element.slug.current} to={element.slug.current}>
+      {element.title}
+    </Link>
   ))
 }
 

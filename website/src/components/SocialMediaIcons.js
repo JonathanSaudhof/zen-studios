@@ -26,7 +26,7 @@ const SocialMediaIcons = ({ accounts }) => {
     <div>
       {accounts.map(element => {
         return (
-          <SocialLink href={element.url} target="_blank">
+          <SocialLink key={element.platform} href={element.url} target="_blank">
             {accountIcons[element.platform]}
           </SocialLink>
         )

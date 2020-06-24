@@ -1,10 +1,13 @@
-import React from "react"
+import React, { useEffect } from "react"
 import BlockContent from "@sanity/block-content-to-react"
 import blockSerializer from "../service/blockSerializer"
 import { Container, Row } from "react-bootstrap"
 import { imageUrlFor } from "../service/helper"
 
 import styled from "styled-components"
+
+import gsap from "gsap"
+import ScrollTrigger from "gsap/ScrollTrigger"
 
 const MyContainer = styled(Container)`
   height: 100%;
@@ -33,25 +36,52 @@ const ContentWrapper = styled.div`
   }
 `
 const ArticleBlock = props => {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
+    const tl2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: `#lp-section-wrapper-${props.id}`,
+        start: "top 75%",
+        end: "bottom 90%",
+        markers: false,
+      },
+    })
+
+    tl2
+      .from(`#lp-section-title-${props.id}`, {
+        duration: 1,
+        xPercent: -100,
+        opacity: 0,
+      })
+      .from(
+        `#lp-section-content-${props.id}`,
+        {
+          duration: 1,
+          xPercent: -100,
+          opacity: 0,
+        },
+        "-=1"
+      )
+  }, [])
+
   return (
-    <>
-      <ContentWrapper
-        imageUrl={imageUrlFor(props.image).width(960).blur(30).url()}
-        id={props.title}
-      >
-        <Container>
-          <Row>
-            <h1>{props.title}</h1>
-          </Row>
-        </Container>
-        <MyContainer>
-          <BlockContent
-            blocks={props._rawContent}
-            serializers={blockSerializer}
-          />
-        </MyContainer>
-      </ContentWrapper>
-    </>
+    <ContentWrapper
+      imageUrl={imageUrlFor(props.image).width(960).blur(30).url()}
+      id={`lp-section-wrapper-${props.id}`}
+    >
+      <Container>
+        <Row>
+          <h1 id={`lp-section-title-${props.id}`}>{props.title}</h1>
+        </Row>
+      </Container>
+      <MyContainer id={`lp-section-content-${props.id}`}>
+        <BlockContent
+          blocks={props._rawContent}
+          serializers={blockSerializer}
+        />
+      </MyContainer>
+    </ContentWrapper>
   )
 }
 

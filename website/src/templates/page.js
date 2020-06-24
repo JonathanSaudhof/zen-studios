@@ -9,17 +9,6 @@ import { Container, Col, Row } from "react-bootstrap"
 import BlockContent from "@sanity/block-content-to-react"
 import blockSerializer from "../service/blockSerializer"
 
-export const query = graphql`
-  query PageTemplateQuery($id: String!) {
-    site: sanityPage(id: { eq: $id }) {
-      id
-      title
-      type
-      _rawBody
-    }
-  }
-`
-
 const PageContainer = styled(Container)`
   background-color: rgba(238, 238, 238, 0.8);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
