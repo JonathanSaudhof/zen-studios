@@ -72,11 +72,10 @@ class ContactForm extends Component {
     return (
       <MyFormContainer>
         <form
-          method="post"
           name="contact-form"
+          method="POST"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
-          action="https://formspree.io/slady@zenstudios.de "
           onSubmit={this.handleSubmit}
         >
           <label htmlFor="contactReason">
@@ -150,20 +149,26 @@ class ContactForm extends Component {
               rows="5"
               value={this.state.message}
               onChange={this.handleChange}
-              placeholder="Nachricht*"
-              required
+              placeholder="Nachricht"
             />
           </label>
           <label htmlFor="instrument">
-            <input
-              className="input"
-              type="text"
+            <select
+              className="dropdown"
               name="instrument"
               id="instrument"
               value={this.state.instrument}
               onChange={this.handleChange}
-              placeholder="Instrument"
-            />
+            >
+              <option value="" selected>
+                Instrument wählen
+              </option>
+              <option value="drums">Schlagzeug</option>
+              <option value="bass">Bass</option>
+              <option value="guitar">Gitarre</option>
+              <option value="keyboard">Keyboard</option>
+              <option value="production">Audioproduktion</option>
+            </select>
           </label>
           <label htmlFor="band_members">
             <select
