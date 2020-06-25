@@ -17,13 +17,18 @@ class ContactForm extends Component {
     nrOfBandMembers: "",
     nrOfPracticeDaysPerWeek: "",
     musicalStyle: "",
-    recording: "",
-    mixing: "",
-    videoShoot: "",
-    privacy: "",
+    recording: false,
+    mixing: false,
+    videoShoot: false,
+    privacy: false,
   }
 
+  // Form change handler
   handleChange = event => {
+    const value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value
     console.log(
       "EVENT NAME:",
       event.target.name,
@@ -31,23 +36,63 @@ class ContactForm extends Component {
       event.target.value
     )
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: value,
     })
   }
 
-  handleCheckboxChange = event => {
-    console.log(
-      "EVENT NAME:",
-      event.target.name,
-      "EVENT VALUE",
-      event.target.value
-    )
-    this.setState({
-      [event.target.name]: event.target.checked,
-    })
+  // Checkbox handler - not needed anymore
+  // handleCheckboxChange = event => {
+  //   console.log(
+  //     "EVENT NAME:",
+  //     event.target.name,
+  //     "EVENT VALUE",
+  //     event.target.value
+  //   )
+  //   this.setState({
+  //     [event.target.name]: event.target.checked,
+  //   })
+  // }
+
+  // // Form validation - uncomment this to use own validation method
+  validateForm = () => {
+    // let name = this.state.name
+    // let email = this.state.email
+    // let phone = this.state.phone
+    // let reg = /^\d+$/
+    let privacyCheck = this.state.privacy
+
+    // // validate name field
+    // if (name == "") {
+    //   alert("Bitte gib einen Namen an")
+    //   return false
+    // }
+    // // validate email field
+    // if (!email.includes("@")) {
+    //   alert("Bitte verwende eine gültige E-Mail-Adresse")
+    //   return false
+    // }
+    // // validate phone field
+    // if (reg.test(phone) === false) {
+    //   alert("Die Telefonnummer darf keine Buchstaben enthalten")
+    //   return false
+    // }
+
+    if (privacyCheck === false) {
+      alert("Bitte bestätige den Datenschutzhinweis")
+      return false
+    }
   }
 
   handleSubmit = event => {
+    // const { email, name } = req.body
+    // if (!email.includes("@")) {
+    //   return res
+    //     .status(400)
+    //     .json({ message: "Bitte verwende eine gültige E-Mail-Adresse" })
+    // }
+    // if (name.length < 1) {
+    //   return res.status(400).json({ message: "Bitte gib deinen Namen an" })
+    // }
     // event.preventDefault()
     // console.log("Submit clicked")
     // console.log("STATE:", this.state)
@@ -77,6 +122,8 @@ class ContactForm extends Component {
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           // onSubmit={this.handleSubmit}
+          onSubmit={this.validateForm} // uncomment this to use own form validation
+          // noValidate // uncomment this to disable default form validation
         >
           <input type="hidden" name="form-name" value="contact" />
           <label htmlFor="contactReason">
@@ -96,6 +143,7 @@ class ContactForm extends Component {
               <option value="networking_events">Networking/Events</option>
             </select>
           </label>
+
           <label htmlFor="name">
             <input
               className="input"
@@ -108,18 +156,7 @@ class ContactForm extends Component {
               required
             />
           </label>
-          {/* <label htmlFor="first_name">
-            <input
-              className="input"
-              type="text"
-              name="firstName"
-              id="first_name"
-              value={this.state.firstName}
-              onChange={this.handleChange}
-              placeholder="Vorname*"
-              required
-            />
-          </label> */}
+
           <label htmlFor="email">
             <input
               className="input"
@@ -132,6 +169,7 @@ class ContactForm extends Component {
               required
             />
           </label>
+
           <label htmlFor="phone">
             <input
               className="input"
@@ -143,6 +181,7 @@ class ContactForm extends Component {
               placeholder="Telefon (optional)"
             />
           </label>
+
           <label htmlFor="message">
             <textarea
               name="message"
@@ -153,6 +192,7 @@ class ContactForm extends Component {
               placeholder="Nachricht"
             />
           </label>
+
           <label htmlFor="instrument">
             <select
               className="dropdown"
@@ -171,6 +211,7 @@ class ContactForm extends Component {
               <option value="production">Audioproduktion</option>
             </select>
           </label>
+
           <label htmlFor="band_members">
             <select
               className="dropdown"
@@ -187,6 +228,7 @@ class ContactForm extends Component {
               <option value="6+">6+</option>
             </select>
           </label>
+
           <label htmlFor="practice_days">
             <select
               className="dropdown"
@@ -207,6 +249,7 @@ class ContactForm extends Component {
               <option value="7">7</option>
             </select>
           </label>
+
           <label htmlFor="musical_style">
             <input
               className="input"
@@ -218,6 +261,8 @@ class ContactForm extends Component {
               placeholder="Musikstil"
             />
           </label>
+
+          {/* Checkboxes */}
           <div className="checkboxes">
             <p>
               <input
@@ -225,7 +270,7 @@ class ContactForm extends Component {
                 id="recording"
                 name="recording"
                 checked={this.state.recording}
-                onChange={this.handleCheckboxChange}
+                onChange={this.handleChange}
               />
               <label htmlFor="recording">Aufnahme</label>
             </p>
@@ -236,7 +281,7 @@ class ContactForm extends Component {
                 id="mixing"
                 name="mixing"
                 checked={this.state.mixing}
-                onChange={this.handleCheckboxChange}
+                onChange={this.handleChange}
               />
               <label htmlFor="mixing">Mixing</label>
             </p>
@@ -247,19 +292,19 @@ class ContactForm extends Component {
                 id="videoshoot"
                 name="videoShoot"
                 checked={this.state.videoShoot}
-                onChange={this.handleCheckboxChange}
+                onChange={this.handleChange}
               />
               <label htmlFor="videoshoot">Videodreh</label>
             </p>
 
+            {/* Privacy statement checkbox */}
             <p>
               <input
                 type="checkbox"
                 id="privacy"
                 name="privacy"
                 checked={this.state.privacy}
-                onChange={this.handleCheckboxChange}
-                required
+                onChange={this.handleChange}
               />
               <label htmlFor="privacy">
                 Ich habe die{" "}
@@ -479,7 +524,6 @@ const HeadlineWrapper = styled.div`
 `
 
 const contactFormPage = props => {
-  console.log("test")
   return (
     <Layout showHeader showLogo>
       <HeadlineWrapper>
