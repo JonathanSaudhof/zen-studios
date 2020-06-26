@@ -54,7 +54,7 @@ class ContactForm extends Component {
   // }
 
   // // Form validation - uncomment this to use own validation method
-  validateForm = () => {
+  validateForm = event => {
     // let name = this.state.name
     // let email = this.state.email
     // let phone = this.state.phone
@@ -79,8 +79,10 @@ class ContactForm extends Component {
 
     if (privacyCheck === false) {
       alert("Bitte bestätige den Datenschutzhinweis")
+      event.preventDefault()
       return false
     }
+    return true
   }
 
   handleSubmit = event => {
