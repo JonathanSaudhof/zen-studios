@@ -74,7 +74,7 @@ const Palms = styled.div`
       
     }
     :nth-child(2) {
-      fill: #395231;
+      fill: #27421f;
     }
   }s
 `
