@@ -26,6 +26,7 @@ module.exports = {
         dataset: process.env.SANITY_DATA_SET,
         watchMode: false,
         token: process.env.SANITY_TOKEN,
+        overlayDrafts: true,
       },
     },
     {
