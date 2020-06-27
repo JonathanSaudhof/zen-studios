@@ -54,7 +54,7 @@ class ContactForm extends Component {
   // }
 
   // // Form validation - uncomment this to use own validation method
-  validateForm = () => {
+  validateForm = event => {
     // let name = this.state.name
     // let email = this.state.email
     // let phone = this.state.phone
@@ -71,7 +71,7 @@ class ContactForm extends Component {
     //   alert("Bitte verwende eine gültige E-Mail-Adresse")
     //   return false
     // }
-    // // validate phone field
+    // validate phone field
     // if (reg.test(phone) === false) {
     //   alert("Die Telefonnummer darf keine Buchstaben enthalten")
     //   return false
@@ -79,8 +79,10 @@ class ContactForm extends Component {
 
     if (privacyCheck === false) {
       alert("Bitte bestätige den Datenschutzhinweis")
+      event.preventDefault()
       return false
     }
+    return true
   }
 
   handleSubmit = event => {
@@ -137,10 +139,10 @@ class ContactForm extends Component {
               <option value="" selected>
                 Kontaktgrund wählen
               </option>
-              <option value="music_lesson">Musikunterricht</option>
-              <option value="rehearsal_room">Proberaum</option>
+              <option value="music-lesson">Musikunterricht</option>
+              <option value="rehearsal-room">Proberaum</option>
               <option value="recording">Aufnahmen</option>
-              <option value="networking_events">Networking/Events</option>
+              <option value="networking-events">Networking/Events</option>
             </select>
           </label>
 
@@ -197,9 +199,9 @@ class ContactForm extends Component {
             <select
               className="dropdown"
               name="instrument"
-              id="instrument"
               value={this.state.instrument}
               onChange={this.handleChange}
+              id="instrument"
             >
               <option value="" selected>
                 Instrument wählen
@@ -212,11 +214,11 @@ class ContactForm extends Component {
             </select>
           </label>
 
-          <label htmlFor="band_members">
+          <label htmlFor="band-members">
             <select
               className="dropdown"
               name="nrOfBandMembers"
-              id="band_members"
+              id="band-members"
               value={this.state.nrOfBandMembers}
               onChange={this.handleChange}
             >
@@ -229,11 +231,11 @@ class ContactForm extends Component {
             </select>
           </label>
 
-          <label htmlFor="practice_days">
+          <label htmlFor="practice-days">
             <select
               className="dropdown"
               name="nrOfPracticeDaysPerWeek"
-              id="practice_days"
+              id="practice-days"
               value={this.state.nrOfPracticeDaysPerWeek}
               onChange={this.handleChange}
             >
@@ -250,12 +252,12 @@ class ContactForm extends Component {
             </select>
           </label>
 
-          <label htmlFor="musical_style">
+          <label htmlFor="musical-style">
             <input
               className="input"
               type="text"
               name="musicalStyle"
-              id="musical_style"
+              id="musical-style"
               value={this.state.musicalStyle}
               onChange={this.handleChange}
               placeholder="Musikstil"
@@ -290,7 +292,7 @@ class ContactForm extends Component {
               <input
                 type="checkbox"
                 id="videoshoot"
-                name="videoShoot"
+                name="videoshoot"
                 checked={this.state.videoShoot}
                 onChange={this.handleChange}
               />
