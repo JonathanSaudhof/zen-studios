@@ -6,6 +6,8 @@ import Layout from "../layouts/layout"
 import { Link } from "gatsby"
 import axios from "axios"
 
+// test
+
 class ContactForm extends Component {
   state = {
     contactReason: "",
