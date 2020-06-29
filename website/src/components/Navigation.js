@@ -202,7 +202,7 @@ const FirstRow = styled.div`
 
 export const Navigation = ({ children, navigation }) => {
   const [menuOpen, setMenuOpen] = useState(false)
-  console.log("navigation", navigation)
+
   return (
     <>
       <NavbarToggle

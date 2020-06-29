@@ -42,7 +42,6 @@ const FooterContainer = styled(Container)`
   }
 `
 const FooterNavigation = ({ items }) => {
-  console.log("items:", items)
   if (items.length === 0 || !items) {
     return
   }
@@ -55,7 +54,6 @@ const FooterNavigation = ({ items }) => {
 }
 
 const Footer = ({ navigation, socialMedia, copyright, children }) => {
-  console.log("Footernav", navigation)
   return (
     <FooterWrapper>
       <FooterContainer>

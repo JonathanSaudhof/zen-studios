@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react"
-import gsap from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
-
 import Layout from "../layouts/layout"
 import SEO from "../components/seo"
 import InstagramPosts from "../components/InstagramPosts"
@@ -79,6 +76,7 @@ const IndexPage = ({ data }) => {
         {landingPageSection.map(element => {
           return (
             <ArticleBlock
+              animation
               key={element.id}
               {...element}
               className="lp-section"

@@ -28,8 +28,8 @@ export const data = graphql`
   }
 `
 
-const page = (props, { data, errors }) => {
-  console.log(props)
+const page = ({ pageContext, data, errors }) => {
+  console.log("Page Props", pageContext)
   return (
     <Layout showHeader={true} showLogo={true}>
       <SEO title={data?.site?.title} />

@@ -36,8 +36,7 @@ const HeaderLogo = styled(BrandLogo)`
 `
 const Header = ({ showLogo, showHeader, navigation }) => {
   // TODO: make it dynamic!
-  // console.log("showLogo", showLogo)
-  console.log("navigation", navigation)
+
   return (
     <MyHeader showHeader={showHeader}>
       <Container>

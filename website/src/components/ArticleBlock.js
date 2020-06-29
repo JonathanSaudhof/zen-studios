@@ -39,30 +39,32 @@ const ArticleBlock = props => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    const tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: `#lp-section-wrapper-${props.id}`,
-        start: "top 75%",
-        end: "bottom 90%",
-        markers: false,
-      },
-    })
-
-    tl2
-      .from(`#lp-section-title-${props.id}`, {
-        duration: 1,
-        xPercent: -100,
-        opacity: 0,
+    if (props.animation) {
+      const tl2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: `#lp-section-wrapper-${props.id}`,
+          start: "top 75%",
+          end: "bottom 90%",
+          markers: false,
+        },
       })
-      .from(
-        `#lp-section-content-${props.id}`,
-        {
+
+      tl2
+        .from(`#lp-section-title-${props.id}`, {
           duration: 1,
           xPercent: -100,
           opacity: 0,
-        },
-        "-=1"
-      )
+        })
+        .from(
+          `#lp-section-content-${props.id}`,
+          {
+            duration: 1,
+            xPercent: -100,
+            opacity: 0,
+          },
+          "-=1"
+        )
+    }
   }, [])
 
   return (
@@ -77,7 +79,7 @@ const ArticleBlock = props => {
       </Container>
       <MyContainer id={`lp-section-content-${props.id}`}>
         <BlockContent
-          blocks={props._rawContent}
+          blocks={props.content ? props.content : props._rawContent}
           serializers={blockSerializer}
         />
       </MyContainer>
