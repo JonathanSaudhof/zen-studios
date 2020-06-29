@@ -6,8 +6,6 @@ import Layout from "../layouts/layout"
 import { Link } from "gatsby"
 import axios from "axios"
 
-// test
-
 class ContactForm extends Component {
   state = {
     contactReason: "",
@@ -35,7 +33,9 @@ class ContactForm extends Component {
       "EVENT NAME:",
       event.target.name,
       "EVENT VALUE",
-      event.target.value
+      event.target.value,
+      "EVENT CHECKED",
+      event.target.checked
     )
     this.setState({
       [event.target.name]: value,
@@ -294,7 +294,7 @@ class ContactForm extends Component {
               <input
                 type="checkbox"
                 id="videoshoot"
-                name="videoshoot"
+                name="videoShoot"
                 checked={this.state.videoShoot}
                 onChange={this.handleChange}
               />
